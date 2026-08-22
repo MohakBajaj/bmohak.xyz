@@ -1,0 +1,55 @@
+.gitignore
+  s_34ca5500702c3f::t_19b29c51082f2d 1-41
+AGENTS.md
+  s_34ca5500702c3f::t_d35b1adecd5323 1-9
+CLAUDE.md
+  s_34ca5500702c3f::t_5f7ec31298fc4b 1
+README.md
+  s_34ca5500702c3f::t_fef4649c509887 1-36
+eslint.config.mjs
+  s_34ca5500702c3f::t_79f19428ce563c 1-18
+next.config.ts
+  s_34ca5500702c3f::t_111db3f3ad4deb 1-7
+package.json
+  s_34ca5500702c3f::t_19c6f9e29e0061 1-27
+pnpm-lock.yaml
+  s_34ca5500702c3f::t_de5d690c241ee6 1-4146
+pnpm-workspace.yaml
+  s_34ca5500702c3f::t_65d1363ea95895 1-3
+postcss.config.mjs
+  s_34ca5500702c3f::t_cc184811dcf1bd 1-7
+public/file.svg
+  s_34ca5500702c3f::t_e7ad57d5d1dec4 1
+public/globe.svg
+  s_34ca5500702c3f::t_937d400761e682 1
+public/next.svg
+  s_34ca5500702c3f::t_67533da377ff33 1
+public/vercel.svg
+  s_34ca5500702c3f::t_118d7e7e6db9d4 1
+public/window.svg
+  s_34ca5500702c3f::t_75d53bdf40b207 1
+src/app/globals.css
+  s_34ca5500702c3f::t_5ccad49b8e92db 1-26
+src/app/layout.tsx
+  s_34ca5500702c3f::t_a3b33250b34797 1-29
+src/app/page.tsx
+  s_34ca5500702c3f::t_6dcc4c470c7215 1-69
+tsconfig.json
+  s_34ca5500702c3f::t_73d0b0d9bedf69 1-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "be96c26370d414401c0ec97ba53201c9a1564ea0",
+  "prompts": {},
+  "sessions": {
+    "s_34ca5500702c3f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d47c416a-e770-4efb-9f93-f0c63f9e4512",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
