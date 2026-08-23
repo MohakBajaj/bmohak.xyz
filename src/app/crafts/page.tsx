@@ -5,6 +5,7 @@ import { PageShell } from "@/components/site-shell";
 import { crafts } from "@/lib/crafts";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/crafts" },
   description:
     "Small interactive things, built to work out one idea and written up.",
   title: "Crafts",

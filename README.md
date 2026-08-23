@@ -76,6 +76,14 @@ Anything with no file, or that flattens to a lump, falls back to its initial.
 
 **The GitHub section is live.** `src/lib/github.ts` reads repos, stats and pull requests at build time and caches for a day. It is unauthenticated, so 60 requests an hour per IP; set `GITHUB_TOKEN` to lift that. Every failure path returns empty and the section hides itself rather than erroring the route. Changing the shape of what it returns needs the cache key bumped, or a stale entry keeps being served.
 
+## SEO
+
+Icons and the social card are generated, not committed: `src/app/icon.tsx`, `apple-icon.tsx` and `opengraph-image.tsx` render through `next/og` at build. `sitemap.ts` and `robots.ts` are built from the same content lists the pages render, so they cannot drift.
+
+Canonicals are declared per route, never at the root. A root-level canonical silently becomes every page's, which tells a crawler the whole site is a duplicate of the homepage.
+
+`src/components/json-ld.tsx` emits a `Person` node. It is the one file exempt from the lint preset, because structured data has no injection point in React other than `dangerouslySetInnerHTML`.
+
 ## Licence
 
 Code is MIT. The writing, the timeline and the photographs are not.

@@ -10,6 +10,7 @@ import { ViewTransition } from "react";
 
 import "./globals.css";
 import { Haptics } from "@/components/haptics";
+import { JsonLd } from "@/components/json-ld";
 import { RouteCue } from "@/components/route-cue";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -43,11 +44,38 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
   description: site.description,
+  /* Every relative URL in this object and in child routes resolves from here,
+     so canonicals and OG images come out absolute without repeating the host. */
   metadataBase: new URL(site.url),
+  /* No canonical and no og:url here on purpose: both are per-route, and a
+     root-level value silently becomes every page's, which tells a crawler the
+     whole site is a duplicate of the homepage. */
+  openGraph: {
+    description: site.description,
+    locale: "en_IN",
+    siteName: site.name,
+    title: site.title,
+    type: "profile",
+  },
+  robots: {
+    follow: true,
+    googleBot: { follow: true, index: true, "max-image-preview": "large" },
+    index: true,
+  },
   title: {
+    /* Name first: "Mohak Bajaj" is the query this ranks for, and a search
+       result truncates the tail, never the head. */
     default: site.title,
-    template: `%s — ${site.name}`,
+    template: `%s, ${site.name}`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@MohakBajaj5",
+    description: site.description,
+    title: site.title,
   },
 };
 
@@ -65,6 +93,7 @@ const RootLayout = ({ children }: LayoutProps<"/">) => (
     suppressHydrationWarning
   >
     <body className="bg-background text-foreground min-h-dvh -tracking-[0.01em] transition-colors duration-300">
+      <JsonLd />
       <ThemeProvider
         attribute="class"
         defaultTheme="system"

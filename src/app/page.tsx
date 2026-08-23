@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { HomeShell } from "@/components/site-shell";
 import { Timeline } from "@/components/timeline";
 import { site } from "@/lib/site";
@@ -15,6 +17,11 @@ import { site } from "@/lib/site";
   The heading is visually hidden: a page with no h1 is a real defect for
   screen readers even when the design calls for no visible title.
 */
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
+};
+
 const Home = () => (
   <HomeShell>
     <header className="sr-only">

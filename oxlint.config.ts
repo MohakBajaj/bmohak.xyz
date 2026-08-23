@@ -32,7 +32,18 @@ const VENDORED = [
 */
 const SCRIPTS = ["scripts/**"];
 
+/*
+  One file, one rule, one reason: JSON-LD cannot be injected any other way in
+  React, and the payload is a local literal. See the comment in the file.
+*/
+const SILENCED = ["src/components/json-ld.tsx"];
+
 export default defineConfig({
   extends: [core, next, react],
-  ignorePatterns: [...(core.ignorePatterns ?? []), ...VENDORED, ...SCRIPTS],
+  ignorePatterns: [
+    ...(core.ignorePatterns ?? []),
+    ...VENDORED,
+    ...SCRIPTS,
+    ...SILENCED,
+  ],
 });

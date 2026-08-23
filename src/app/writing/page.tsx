@@ -7,6 +7,7 @@ import { isExternal, postsByYear } from "@/lib/writing";
 import type { Post } from "@/lib/writing";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/writing" },
   description: "Postmortems, migrations, and the occasional thing that worked.",
   title: "Writing",
 };
