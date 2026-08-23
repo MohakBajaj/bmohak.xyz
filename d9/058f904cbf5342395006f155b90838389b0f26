@@ -1,0 +1,19 @@
+src/lib/lifelines/mohak.ts
+  s_34ca5500702c3f::t_94b606a7e0eb8f 209
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "d9058f904cbf5342395006f155b90838389b0f26",
+  "prompts": {},
+  "sessions": {
+    "s_34ca5500702c3f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d47c416a-e770-4efb-9f93-f0c63f9e4512",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
