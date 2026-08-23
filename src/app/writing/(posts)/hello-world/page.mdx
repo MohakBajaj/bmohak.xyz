@@ -1,0 +1,64 @@
+export const metadata = {
+  title: "Hello, world",
+  description:
+    "Why this site is a timeline instead of a hero section, and what it is actually built out of.",
+};
+
+# Hello, world
+
+I have rewritten my personal site four times. Versions one through three are still on GitHub, and all three of them open the same way: my name, a job title, three cards, a contact form nobody ever used. I could not tell you a single thing I learned from building any of them.
+
+So this one starts with a different question. Not "what should a portfolio look like" but "what does someone actually want to know when they land here". The honest answer is: who is this, what has he done, and is any of it real. A hero section answers the first one and lies about the other two.
+
+## The timeline is the page
+
+The homepage has no headline. It has a rail running from 2004 to now, and every year carries what actually happened in it. First computer in 2009. First hello world in Turbo C++ in 2013. plutosONE in 2023. Graduation, CambrianEdge, a talk, a buildathon.
+
+It works because it cannot be padded. A hero section lets you write "passionate about scalable solutions" and move on. A year with nothing in it is visibly empty, and a year with four entries earned them. The format does the arguing.
+
+The rail comes from [Lifeline](https://github.com/evilrabbit/lifeline), which ships as a shadcn registry, so the source landed in my repo and every easing and breakpoint is mine to change. Horizontal and scroll-scrubbed above `md`, vertical below it.
+
+## What it is built out of
+
+Boring where it can be, current where it pays for itself.
+
+|                 |                                                        |
+| --------------- | ------------------------------------------------------ |
+| Framework       | Next.js 16.3, App Router, Turbopack                    |
+| Runtime         | Bun for install, scripts and tests                     |
+| Language        | TypeScript 7, on the native compiler                   |
+| Lint and format | Ultracite, which is oxlint and oxfmt behind one preset |
+| Components      | shadcn/ui on Base UI, `base-nova`                      |
+| Prose           | shadcn typeset, one CSS file, no prose classes         |
+
+The interesting part of that table is TypeScript 7 and oxlint. `tsc --noEmit` finishes in under a second on this repo, and the linter is fast enough that it runs on every save without me noticing. Tooling that is quick enough to be invisible changes how often you actually run it.
+
+Bun is the package manager and script runner, not the runtime. I tried `bun --bun next build` and it crashed inside Next's Turbopack production runtime. That is a real incompatibility, not a config mistake, so the scripts run `next` on Node and Bun does everything around it.
+
+## Two sizes, two colours
+
+The whole site is 12px and 14px. Nothing else. Section headings are 14px, the same as body text, and the hierarchy comes from weight and space instead of a type ramp. Backgrounds are pure black and pure white, with zinc for the muted tiers and hairline rules where a card would normally go.
+
+Constraints like that are load bearing. When there is no size to reach for and no colour to reach for, the only lever left is whether the sentence is worth keeping.
+
+## The parts that took the longest
+
+None of it was the layout.
+
+**Getting the timeline to fill its box.** `height: 100%` resolves to nothing unless every ancestor has a definite height, and my shell used `min-h-dvh`, which is a minimum, not a height. The rail collapsed to its content and I spent an hour on CSS before measuring the actual computed value.
+
+**Flattening the logos.** The site is two colours and fetched favicons are not. Half of them ship an opaque tile, so a CSS filter paints a solid square instead of a silhouette. There is now a script that reduces each mark to a single channel, alpha, and the page paints the shape with `currentColor`. It took three passes to get the tile detection right, and two logos still flatten to a lump and fall back to their initial.
+
+**The sound.** The first version played one click on every `pointerdown` and a tick on every hover, which meant dragging the mouse across the nav fired five sounds. It was rebuilt around state changes instead: the theme flipping, a tab switching, the route actually changing. Sound is off until you ask for it, and the preference survives a reload.
+
+## What is live
+
+The About page reads GitHub at build time and caches for a day: repo count, stars, followers, what I pushed most recently, and pull requests I have sent to other people's repositories, whatever came of them. A merged PR on someone else's repo says more than a green square on mine.
+
+The contribution graph next to it is real too. That number moves without me editing anything, which is the point.
+
+## What is still missing
+
+The writing list has one post in it, which is this one. Several timeline years between 2004 and 2020 are still blank. The stack page lists what I use today and will be wrong within a quarter.
+
+That is fine. A site that is finished is a site that stopped being true.

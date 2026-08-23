@@ -1,0 +1,32 @@
+import { StepGrid } from "@/components/crafts/step-grid";
+
+export const metadata = {
+  title: "Step Grid",
+  description: "Sixteen steps, four voices, one sample.",
+};
+
+# Step Grid
+
+Sixteen steps, four voices, one sample.
+
+<StepGrid />
+
+## The idea
+
+Four voices, and one audio file. Each voice is the same sample played at a different `playbackRate`, 0.55 for the kick and 2.2 for the edge, which is enough separation to hear four parts where there is only one asset. It is the oldest trick in sampling and it still costs one decode.
+
+Toggling a step is the whole interface. There is no instrument picker, no velocity, no swing. The grid is the score.
+
+## The transport
+
+A sequencer wants a clock, and the correct clock is Web Audio's: schedule each hit against `AudioContext.currentTime`, run a lookahead window, never trust the main thread. That is the right answer for something that has to stay locked to other audio for minutes at a time.
+
+This is a `setInterval`. At 90–160 BPM a sixteenth is 94–167ms, and the drift a timer accumulates over the handful of bars anyone plays here stays well under what a listener can hear. The lookahead scheduler would be more correct and would also be the largest thing on the page.
+
+**Where it breaks:** background the tab and browsers clamp timers to about one second, so the pattern stalls and resumes out of phase. A lookahead scheduler would keep time through that. If this ever needs to play alongside anything else, that is the rewrite.
+
+## Notes
+
+- The grid lives in a ref as well as state, so changing a step does not tear down and rebuild the interval mid-bar.
+- The playhead is derived from `playing`, not reset when you stop. State that is only ever a function of other state should not be state.
+- Every pad is a real `button` with `aria-pressed`, so the pattern is reachable and readable without a pointer.
