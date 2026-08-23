@@ -206,13 +206,7 @@ export const mohak = defineLifeline({
             ": local-first capture inboxes for AI-assisted work. Select text, press a chord, own the markdown."
           ),
         ],
-        [
-          t("Self-hosted "),
-          a("SearXNG", "https://searxng.org"),
-          t(
-            ", migrated build tooling in public with the receipts attached, and wrote songs for developers who ship at 3am."
-          ),
-        ],
+        "Migrated build tooling in public with the receipts attached, and wrote songs for developers who ship at 3am.",
       ],
       id: "shipping",
     },
