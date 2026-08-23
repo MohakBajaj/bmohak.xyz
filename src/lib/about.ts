@@ -64,8 +64,7 @@ export const work: Role[] = [
 export const projects: Project[] = [
   {
     description:
-      "An SSH-accessible terminal portfolio in Go: Bubble Tea, Wish, and an AI chat behind a command interface. Run: ssh bmohak.xyz",
-    href: "https://tui.bmohak.xyz",
+      "An SSH-accessible terminal portfolio in Go: Bubble Tea, Wish, and an AI chat behind a command interface. Runs in Termux on a phone, proxied out to tui.bmohak.xyz. Run: ssh bmohak.xyz",
     icon: "/favicons/mono/github.png",
     name: "mohak.tui",
     repo: "https://github.com/MohakBajaj/mohak.tui",

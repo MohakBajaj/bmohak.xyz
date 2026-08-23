@@ -19,8 +19,9 @@ const a = (value: string, href: string): LifelineEventSegment => ({
  * is known before 2019, so the rail opens on a long quiet runway — add
  * milestones there, or raise birthYear, if it ever reads as dead space.
  *
- * mohak.tui links to its repo, not tui.bmohak.xyz: the tunnel was returning
- * 530 when this was written. Point it at the live host once it is back up.
+ * mohak.tui links to its repo rather than tui.bmohak.xyz on purpose. The host
+ * is a phone running Termux, so the tunnel is down whenever the phone is, and
+ * a dead link on the timeline is worse than a live one to the source.
  */
 export const mohak = defineLifeline({
   birthYear: 2004,
@@ -180,7 +181,7 @@ export const mohak = defineLifeline({
           t("Built "),
           a("mohak.tui", "https://github.com/MohakBajaj/mohak.tui"),
           t(
-            " in Go, on Bubble Tea and Wish, with an AI chat behind a command interface. The portfolio answers on port 22: ssh bmohak.xyz."
+            " in Go, on Bubble Tea and Wish, with an AI chat behind a command interface. It runs in Termux on my phone and proxies out to tui.bmohak.xyz, so the portfolio answers on port 22: ssh bmohak.xyz."
           ),
         ],
         [
