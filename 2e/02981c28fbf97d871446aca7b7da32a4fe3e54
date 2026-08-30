@@ -1,0 +1,59 @@
+src/components/github-contributions.tsx
+  s_ce37a64b3ffdc9::t_7b581239100849 51,53-58
+  s_ce37a64b3ffdc9::t_b103b710bdd09e 4
+src/app/writing/page.tsx
+  s_ce37a64b3ffdc9::t_8a2e1528ba254c 74
+src/components/site-nav.tsx
+  s_ce37a64b3ffdc9::t_662fad44ad7cca 78
+  s_ce37a64b3ffdc9::t_c4aa5f95cb17e5 3
+  s_ce37a64b3ffdc9::t_8d7b48cf892667 19-45
+  s_ce37a64b3ffdc9::t_2ae9a7d734d187 87
+  s_ce37a64b3ffdc9::t_29f47b524e116f 48
+src/components/site-shell.tsx
+  s_ce37a64b3ffdc9::t_6d7bde934c0fac 63,66
+src/app/globals.css
+  s_ce37a64b3ffdc9::t_0377a4e29ae179 121-152
+  s_ce37a64b3ffdc9::t_a19b68a9b856cf 265-358
+  s_ce37a64b3ffdc9::t_a07842668ebea1 264
+src/components/lifeline/lifeline-marker.tsx
+  s_ce37a64b3ffdc9::t_019700671d14d4 40
+  s_ce37a64b3ffdc9::t_9ce8d0c8a5587d 25-26
+  s_ce37a64b3ffdc9::t_14fc3830fa8e0c 67-86,89-96,100-107,111-116
+src/components/lifeline/use-lifeline-scroll.ts
+  s_ce37a64b3ffdc9::t_549427d0b11a28 202-204
+  s_ce37a64b3ffdc9::t_f690d0fe61f2de 64-69
+  s_ce37a64b3ffdc9::t_65ce04ed578b1e 524,536-543
+  s_ce37a64b3ffdc9::t_7ecf5b07373b48 690-694
+  s_ce37a64b3ffdc9::t_2d54c7e04a8d6e 474
+  s_ce37a64b3ffdc9::t_8a24117365b754 601-604
+src/app/about/page.tsx
+  s_ce37a64b3ffdc9::t_a61d3186490543 62
+src/components/lifeline/lifeline-vertical.tsx
+  s_ce37a64b3ffdc9::t_7108a0018cef8f 14
+  s_ce37a64b3ffdc9::t_c1a4d727122732 232-239,244,247-254
+  s_ce37a64b3ffdc9::t_978a667ec0357b 188
+  s_ce37a64b3ffdc9::t_89a1ad4f535f13 178
+  s_ce37a64b3ffdc9::t_cbba9b33556c49 508
+  s_ce37a64b3ffdc9::t_755ab25cf18aee 48-60
+src/app/crafts/page.tsx
+  s_ce37a64b3ffdc9::t_40d101b387816c 19
+src/components/lifeline/lifeline-desktop.tsx
+  s_ce37a64b3ffdc9::t_5a71e25916378b 5
+  s_ce37a64b3ffdc9::t_122796139c8756 188
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "2e02981c28fbf97d871446aca7b7da32a4fe3e54",
+  "prompts": {},
+  "sessions": {
+    "s_ce37a64b3ffdc9": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2bd8727a-f822-4023-9829-afbecb50514d",
+        "model": "grok-4.6"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
