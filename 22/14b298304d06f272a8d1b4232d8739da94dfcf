@@ -1,0 +1,38 @@
+src/components/site-footer.tsx
+  s_848437d6619c89::t_1f5a986991b24a 107
+  s_848437d6619c89::t_25d23cfb907815 60,62-65,68-74,76,78-80,83-96,98-100,102-106
+  s_848437d6619c89::t_054cb37953fbbf 10
+  s_848437d6619c89::t_03a1282afe75da 59
+src/app/layout.tsx
+  s_848437d6619c89::t_3280872f2a7b73 104-111
+src/components/site-nav.tsx
+  s_848437d6619c89::t_1906c43c3ba8e0 35-39,41-46,48-55,57-59,61-73,75-78,80
+  s_848437d6619c89::t_6030de1209a6e0 81
+  s_848437d6619c89::t_8a3f0c5c940265 74
+  s_848437d6619c89::t_3dcb6974557462 34
+  s_848437d6619c89::t_0325353e0adb21 5
+  s_848437d6619c89::t_c3076d50de5135 19-20
+  s_848437d6619c89::t_0652cf5af7261e 22,27
+src/app/globals.css
+  s_848437d6619c89::t_403a0c57bea625 379-387,398
+  s_848437d6619c89::t_972235e7013527 360-367,376-378,388-390,394-397
+  s_848437d6619c89::t_35a14e8959a265 375
+  s_848437d6619c89::t_9aec5f67bdfd81 391-393
+  s_848437d6619c89::t_f420a8056973f8 399
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "2214b298304d06f272a8d1b4232d8739da94dfcf",
+  "prompts": {},
+  "sessions": {
+    "s_848437d6619c89": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "1ea32119-b9cd-4d8e-a780-5a036a418ac6",
+        "model": "grok-4.6"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
