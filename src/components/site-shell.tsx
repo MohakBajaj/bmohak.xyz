@@ -60,10 +60,10 @@ export const PageShell = ({
           haydenbleasel.com: a page needs a title that reads as one, and at
           14px it was indistinguishable from the prose under it. Meta and
           chrome stay on the two-step scale. */}
-      <h1 className="font-heading text-sm font-medium tracking-tight text-balance">
+      <h1 className="font-heading page-enter-self text-sm font-medium tracking-tight text-balance">
         {title}
       </h1>
-      <p className="text-muted-foreground mt-2 text-sm leading-relaxed text-pretty">
+      <p className="text-muted-foreground page-enter-self mt-2 text-sm leading-relaxed text-pretty [animation-delay:80ms]">
         {description}
       </p>
 

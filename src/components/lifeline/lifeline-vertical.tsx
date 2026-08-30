@@ -11,6 +11,7 @@ import {
   type CSSProperties,
 } from "react";
 
+import { LIFELINE_CURRENT_YEAR } from "@/lib/lifeline-data";
 import { cn } from "@/lib/utils";
 
 import { CompanyIcon } from "./company-icon";
@@ -44,7 +45,19 @@ const RAIL_LEFT = "calc(2.5rem + 0.75rem + 0.5rem)";
  */
 const MAX_ARMED_ENTRIES = 80;
 
-function RailTick() {
+function RailTick({ isNow = false }: { isNow?: boolean }) {
+  if (isNow) {
+    return (
+      <span
+        aria-hidden="true"
+        className="lifeline-now-node-vertical text-zinc-500 dark:text-zinc-400"
+      >
+        <span className="lifeline-now-core" />
+        <span className="lifeline-now-ring" />
+      </span>
+    );
+  }
+
   return (
     <span
       aria-hidden="true"
@@ -162,6 +175,7 @@ const LifelineVerticalEntry = forwardRef<
     introDelay?: number;
     introDuration?: number;
     revealPending?: boolean;
+    isNow?: boolean;
   }
 >(function LifelineVerticalEntry(
   {
@@ -171,6 +185,7 @@ const LifelineVerticalEntry = forwardRef<
     introDelay = 0,
     introDuration = 420,
     revealPending = false,
+    isNow = false,
   },
   ref
 ) {
@@ -214,15 +229,29 @@ const LifelineVerticalEntry = forwardRef<
         }}
       >
         <div className={`${GRID_CLASS} items-center`}>
-          <p className="text-right text-[11px] leading-4 font-medium text-zinc-500 tabular-nums transition-colors duration-300 dark:text-zinc-600">
+          <p
+            className={cn(
+              "text-right text-[11px] leading-4 font-medium tabular-nums transition-colors duration-300",
+              isNow
+                ? "text-zinc-500 dark:text-zinc-500"
+                : "text-zinc-500 dark:text-zinc-600"
+            )}
+          >
             {age}
           </p>
 
           <div className="flex items-center justify-center">
-            <RailTick />
+            <RailTick isNow={isNow} />
           </div>
 
-          <p className="text-[15px] leading-5 font-medium whitespace-nowrap text-zinc-500 tabular-nums transition-colors duration-300 dark:text-zinc-400">
+          <p
+            className={cn(
+              "text-[15px] leading-5 font-medium whitespace-nowrap tabular-nums transition-colors duration-300",
+              isNow
+                ? "text-zinc-800 dark:text-zinc-200"
+                : "text-zinc-500 dark:text-zinc-400"
+            )}
+          >
             {marker.label ?? marker.year}
           </p>
         </div>
@@ -476,6 +505,7 @@ export function LifelineVertical({
               revealPending={showIntro && revealOnScroll}
               introDelay={intro.getMarkerDelay(index)}
               introDuration={intro.getMarkerFadeDuration(index)}
+              isNow={marker.year === LIFELINE_CURRENT_YEAR}
             />
           ))}
         </ol>

@@ -118,6 +118,38 @@
       opacity: 1;
     }
   }
+  @keyframes page-enter {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 10px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes contribution-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes lifeline-now-ring {
+    0% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    70% {
+      opacity: 0;
+      transform: scale(2.6);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(2.6);
+    }
+  }
 }
 
 :root {
@@ -227,6 +259,101 @@
     var(--font-geist-sans, "Geist"), "Geist Fallback", ui-sans-serif, system-ui,
     sans-serif;
   font-family: var(--lifeline-font);
+}
+
+/*
+ * The present year is still being drawn. One live node on the rail, not a
+ * decorative status strip — the pulse is the year that has not closed yet.
+ */
+.lifeline-now-node {
+  width: 7px;
+  height: 7px;
+  transform: translate(-50%, -50%);
+}
+.lifeline-now-node-vertical {
+  position: relative;
+  display: block;
+  width: 7px;
+  height: 7px;
+}
+.lifeline-now-core,
+.lifeline-now-ring {
+  position: absolute;
+  border-radius: 999px;
+}
+.lifeline-now-core {
+  inset: 1.5px;
+  background: currentColor;
+}
+.lifeline-now-ring {
+  inset: 0;
+  background: currentColor;
+  opacity: 0.35;
+}
+.lifeline-now-ahead {
+  pointer-events: none;
+  position: absolute;
+  top: var(--lifeline-rail);
+  left: 6px;
+  width: 52px;
+  height: 1px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, currentColor, transparent);
+  opacity: 0.35;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lifeline-now-ring {
+    animation: lifeline-now-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+
+  .page-enter-self {
+    animation: page-enter 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .page-enter {
+    --page-enter-base: 0ms;
+  }
+  .page-enter > * {
+    animation: page-enter 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .page-enter > *:nth-child(1) {
+    animation-delay: var(--page-enter-base);
+  }
+  .page-enter > *:nth-child(2) {
+    animation-delay: calc(var(--page-enter-base) + 70ms);
+  }
+  .page-enter > *:nth-child(3) {
+    animation-delay: calc(var(--page-enter-base) + 140ms);
+  }
+  .page-enter > *:nth-child(4) {
+    animation-delay: calc(var(--page-enter-base) + 210ms);
+  }
+  .page-enter > *:nth-child(5) {
+    animation-delay: calc(var(--page-enter-base) + 280ms);
+  }
+  .page-enter > *:nth-child(6) {
+    animation-delay: calc(var(--page-enter-base) + 350ms);
+  }
+  .page-enter > *:nth-child(7) {
+    animation-delay: calc(var(--page-enter-base) + 420ms);
+  }
+  .page-enter > *:nth-child(8) {
+    animation-delay: calc(var(--page-enter-base) + 490ms);
+  }
+
+  .contribution-in {
+    opacity: 0;
+    animation: contribution-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc((var(--w, 0) + var(--d, 0) * 0.15) * 12ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lifeline-now-ring {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 /*

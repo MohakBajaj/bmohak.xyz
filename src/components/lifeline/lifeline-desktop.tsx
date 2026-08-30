@@ -2,6 +2,7 @@
 
 import { useMemo, type CSSProperties } from "react";
 
+import { LIFELINE_CURRENT_YEAR } from "@/lib/lifeline-data";
 import { cn } from "@/lib/utils";
 
 import { getLifelineEventImage } from "./lifeline-event";
@@ -184,6 +185,7 @@ export function LifelineDesktop({
                     animateIntro={showIntro}
                     introDelay={intro.getMarkerDelay(index)}
                     introDuration={intro.getMarkerFadeDuration(index)}
+                    isNow={marker.year === LIFELINE_CURRENT_YEAR}
                   />
                 ))}
               </div>

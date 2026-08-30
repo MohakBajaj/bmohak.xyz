@@ -61,6 +61,12 @@ const EMBED_BOUNDARY_MAX_HOLD_MS = 900;
  * properly on screen, rather than starting cold under the reader's eyes.
  */
 const EMBED_INTRO_ARM_MARGIN = "0px 0px 200px 0px";
+/**
+ * First layout can report max = 0 before marker refs have width. Completing
+ * the sweep on that frame parks the rail on birth — the empty runway — and
+ * the site reads as dead. Wait this long for a real track before giving up.
+ */
+const INTRO_LAYOUT_WAIT_MS = 1500;
 
 function normalizeWheelDelta(event: WheelEvent) {
   let delta =
@@ -193,6 +199,9 @@ export function useLifelineScroll(
   const [isLayoutReady, setIsLayoutReady] = useState(false);
   const [isEmbed, setIsEmbed] = useState(false);
   const [introArmed, setIntroArmed] = useState(false);
+  // Intro is supposed to end on the present. If the first measure was empty,
+  // keep that intention until a real track width shows up.
+  const pendingPresentRef = useRef(false);
 
   modeRef.current = options.mode ?? "auto";
   isCoarsePointerRef.current = options.isCoarsePointer ?? false;
@@ -462,6 +471,7 @@ export function useLifelineScroll(
       // it — its end, the present. Embedded is no different: it is the same
       // intro and the same resting place.
       translatePx.current = introSkippedRef.current ? max : 0;
+      pendingPresentRef.current = introSkippedRef.current && max <= 0;
       initialized.current = true;
     }
 
@@ -511,21 +521,26 @@ export function useLifelineScroll(
     }
 
     introWasAnimatingRef.current = true;
+    pendingPresentRef.current = true;
     const railMs = options.introRailMs ?? 3200;
 
     const step = (now: number) => {
       const max = maxTranslate.current;
 
       if (max <= 0) {
-        // Nothing to travel: a timeline that fits its stage has no rail to
-        // sweep. Waiting for one spun this loop forever and left the intro
-        // lock on, so run the intro out where it already is — the markers
-        // and labels still get their fade, there is just no journey.
         if (!introStartedRef.current) {
           introStartedRef.current = true;
           introScrollStart.current = now;
           onIntroScrollStartRef.current?.();
         }
+
+        // First paint often measures an empty track. Keep waiting — finishing
+        // here used to leave the camera on year zero.
+        if (now - introScrollStart.current < INTRO_LAYOUT_WAIT_MS) {
+          introScrollId.current = requestAnimationFrame(step);
+          return;
+        }
+
         sectionRef.current?.style.setProperty("--lifeline-intro-progress", "1");
         introScrollId.current = 0;
         return;
@@ -583,6 +598,10 @@ export function useLifelineScroll(
 
     if (!introWasAnimatingRef.current) return;
     introWasAnimatingRef.current = false;
+    applyTranslateRef.current(maxTranslate.current);
+    if (maxTranslate.current > 0) {
+      pendingPresentRef.current = false;
+    }
 
     sectionRef.current?.style.removeProperty("--lifeline-intro-progress");
     markerRefs.current.forEach((marker) => {
@@ -667,6 +686,11 @@ export function useLifelineScroll(
       const max = measureLayout();
 
       translatePx.current = clamp(translatePx.current, 0, max);
+
+      if (pendingPresentRef.current && max > 0 && !introAnimatingRef.current) {
+        translatePx.current = max;
+        pendingPresentRef.current = false;
+      }
 
       // During intro scroll, the rAF loop owns translate — only refresh bounds.
       if (!(introAnimatingRef.current && introStartedRef.current)) {

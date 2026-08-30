@@ -16,7 +16,7 @@ const CRAFTS_INTRO =
 
 const Crafts = () => (
   <PageShell description={CRAFTS_INTRO} title="Crafts">
-    <ul className="grid grid-cols-[minmax(0,1fr)] gap-5 text-sm">
+    <ul className="page-enter grid grid-cols-[minmax(0,1fr)] gap-5 text-sm [--page-enter-base:120ms]">
       {crafts.map((craft) => (
         <li key={craft.slug}>
           <Link className="group block" href={`/crafts/${craft.slug}`}>

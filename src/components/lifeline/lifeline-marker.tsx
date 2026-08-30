@@ -22,6 +22,8 @@ interface LifelineMarkerColumnProps {
   animateIntro?: boolean;
   introDelay?: number;
   introDuration?: number;
+  /** Last open year — the rail is still being drawn. */
+  isNow?: boolean;
 }
 
 export const LifelineMarkerColumn = forwardRef<
@@ -35,6 +37,7 @@ export const LifelineMarkerColumn = forwardRef<
     animateIntro = false,
     introDelay = 0,
     introDuration = 420,
+    isNow = false,
   },
   ref
 ) {
@@ -61,21 +64,56 @@ export const LifelineMarkerColumn = forwardRef<
             : {}),
         }}
       >
-        <span
-          className="absolute top-[var(--lifeline-rail)] left-0 z-10 h-[10px] w-px -translate-y-1/2 bg-zinc-400 transition-colors duration-300 group-hover:bg-zinc-600 dark:bg-zinc-700 dark:group-hover:bg-zinc-400"
-          aria-hidden="true"
-        />
+        {isNow ? (
+          <>
+            <span
+              aria-hidden="true"
+              className="lifeline-now-node absolute top-[var(--lifeline-rail)] left-0 z-10 text-zinc-500 dark:text-zinc-400"
+            >
+              <span className="lifeline-now-core" />
+              <span className="lifeline-now-ring" />
+            </span>
+            <span
+              aria-hidden="true"
+              className="lifeline-now-ahead text-zinc-400 dark:text-zinc-500"
+            />
+          </>
+        ) : (
+          <span
+            aria-hidden="true"
+            className="absolute top-[var(--lifeline-rail)] left-0 z-10 h-[10px] w-px -translate-y-1/2 bg-zinc-400 transition-colors duration-300 group-hover:bg-zinc-600 dark:bg-zinc-700 dark:group-hover:bg-zinc-400"
+          />
+        )}
 
         <div className="flex w-full flex-col items-start text-left">
-          <p className="mb-5 h-4 text-[11px] leading-4 font-medium text-zinc-500 tabular-nums transition-colors duration-300 group-hover:text-black dark:text-zinc-600 dark:group-hover:text-zinc-400">
+          <p
+            className={cn(
+              "mb-5 h-4 text-[11px] leading-4 font-medium tabular-nums transition-colors duration-300 group-hover:text-black dark:group-hover:text-zinc-400",
+              isNow
+                ? "text-zinc-500 dark:text-zinc-500"
+                : "text-zinc-500 dark:text-zinc-600"
+            )}
+          >
             {age}
           </p>
 
-          <p className="mb-6 h-5 text-[15px] leading-5 font-medium whitespace-nowrap text-zinc-500 tabular-nums transition-colors duration-300 group-hover:text-black dark:group-hover:text-white">
+          <p
+            className={cn(
+              "mb-6 h-5 text-[15px] leading-5 font-medium whitespace-nowrap tabular-nums transition-colors duration-300 group-hover:text-black dark:group-hover:text-white",
+              isNow
+                ? "text-zinc-800 dark:text-zinc-200"
+                : "text-zinc-500 dark:text-zinc-600"
+            )}
+          >
             {marker.label ?? marker.year}
           </p>
 
-          <div className="relative w-full pb-10 text-zinc-500 transition-colors duration-300 group-hover:text-black dark:group-hover:text-zinc-300">
+          <div
+            className={cn(
+              "relative w-full pb-10 transition-colors duration-300 group-hover:text-black dark:group-hover:text-zinc-300",
+              isNow ? "text-zinc-600 dark:text-zinc-400" : "text-zinc-500"
+            )}
+          >
             {/* When this column carries people, the content block reserves
                 the band's height as a floor: short and average columns put
                 their portraits on the same line as every other column, and

@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,8 +16,36 @@ import { cn } from "@/lib/utils";
 const NAV_SURFACE =
   "bg-[rgba(255,255,255,0.8)] dark:bg-[rgba(0,0,0,0.8)] backdrop-blur-xl";
 
+const NAV_ACTIVE = "bg-foreground absolute inset-x-0 -bottom-1 h-px";
+
+const NavActive = ({
+  reduceMotion,
+  show,
+}: {
+  reduceMotion: boolean;
+  show: boolean;
+}) => {
+  if (!show) {
+    return null;
+  }
+
+  if (reduceMotion) {
+    return <span aria-hidden="true" className={NAV_ACTIVE} />;
+  }
+
+  return (
+    <motion.span
+      aria-hidden="true"
+      className={NAV_ACTIVE}
+      layoutId="site-nav-active"
+      transition={{ bounce: 0, duration: 0.35, type: "spring" }}
+    />
+  );
+};
+
 export const SiteNav = () => {
   const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
 
   return (
     <nav
@@ -46,7 +75,7 @@ export const SiteNav = () => {
               <Link
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "text-xs transition-colors duration-300",
+                  "relative text-xs transition-colors duration-300",
                   active
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground"
@@ -55,6 +84,7 @@ export const SiteNav = () => {
                 key={item.href}
               >
                 {item.label}
+                <NavActive reduceMotion={Boolean(reduceMotion)} show={active} />
               </Link>
             );
           })}

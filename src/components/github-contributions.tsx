@@ -1,7 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
-import { use } from "react";
+import { use, type CSSProperties } from "react";
 
 import type { Activity } from "@/components/contribution-graph";
 import {
@@ -48,7 +48,14 @@ export function GitHubContributions({
             <TooltipTrigger render={<g />}>
               <ContributionGraphBlock
                 activity={activity}
+                className="contribution-in"
                 dayIndex={dayIndex}
+                style={
+                  {
+                    "--d": dayIndex,
+                    "--w": weekIndex,
+                  } as CSSProperties
+                }
                 weekIndex={weekIndex}
               />
             </TooltipTrigger>

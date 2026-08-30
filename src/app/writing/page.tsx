@@ -71,7 +71,7 @@ const Writing = () => {
           .
         </p>
       ) : (
-        <div className="space-y-8">
+        <div className="page-enter space-y-8 [--page-enter-base:120ms]">
           {years.map(([year, yearPosts]) => (
             <section key={year}>
               <h2 className="text-muted-foreground font-mono text-xs tabular-nums">

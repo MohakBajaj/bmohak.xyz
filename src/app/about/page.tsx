@@ -59,7 +59,7 @@ const About = async () => {
 
   return (
     <PageShell description={ABOUT_INTRO} title="About">
-      <div className="grid grid-cols-[minmax(0,1fr)] gap-10 text-sm">
+      <div className="page-enter grid grid-cols-[minmax(0,1fr)] gap-10 text-sm [--page-enter-base:120ms]">
         <section>
           {/* Float, so the prose wraps around it the way his does. */}
           <Image
