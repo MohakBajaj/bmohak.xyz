@@ -357,14 +357,44 @@
 }
 
 /*
- * Page fade. React's <ViewTransition> around <main> in the root layout is
- * what opts navigations in; this only sets the timing. 180ms, matched by the
- * theme toggle's own startViewTransition call so both reads as one motion.
+ * Page fade. React's <ViewTransition> opts navigations in; this only sets
+ * the timing. 180ms, matched by the theme toggle's own startViewTransition
+ * call so both reads as one motion.
+ *
+ * The default group animation interpolates width, height and transform.
+ * About is thousands of pixels tall, so leaving it from the footer morphs
+ * that box onto a short page and the footer flies. Chrome is named and
+ * pinned; everything else is the root viewport, which is already one size.
  */
 ::view-transition-old(*),
 ::view-transition-new(*) {
   animation-duration: 180ms;
   animation-timing-function: ease;
+}
+
+::view-transition-group(root) {
+  animation: none;
+}
+
+/*
+ * Name on the mark itself — a ViewTransition wrapper around an absolutely
+ * positioned line becomes the containing block and drops the line out of
+ * the nav into document flow.
+ */
+.site-nav-active {
+  view-transition-name: site-nav-active;
+}
+
+::view-transition-group(site-nav),
+::view-transition-old(site-nav),
+::view-transition-new(site-nav),
+::view-transition-group(site-nav-active),
+::view-transition-old(site-nav-active),
+::view-transition-new(site-nav-active),
+::view-transition-group(site-footer),
+::view-transition-old(site-footer),
+::view-transition-new(site-footer) {
+  animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

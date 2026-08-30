@@ -7,6 +7,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { IconSvgElement } from "@hugeicons/react";
+import { ViewTransition } from "react";
 
 import { SoundToggle } from "@/components/sound-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -55,51 +56,53 @@ const IconLink = ({
  * page it is opaque with a rule, because content passes under it.
  */
 export const SiteFooter = ({ floating = false }: { floating?: boolean }) => (
-  <footer
-    className={cn(
-      "shrink-0 transition-colors duration-300",
-      floating
-        ? "bg-[rgba(255,255,255,0.95)] dark:bg-[rgba(0,0,0,0.95)]"
-        : "border-border border-t"
-    )}
-  >
-    <div
+  <ViewTransition name="site-footer">
+    <footer
       className={cn(
-        SITE_CONTAINER,
-        "text-muted-foreground flex min-h-12 flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2 text-xs"
+        "shrink-0 transition-colors duration-300",
+        floating
+          ? "bg-[rgba(255,255,255,0.95)] dark:bg-[rgba(0,0,0,0.95)]"
+          : "border-border border-t"
       )}
     >
-      <span>© {site.name}. Built in public, mostly at night.</span>
+      <div
+        className={cn(
+          SITE_CONTAINER,
+          "text-muted-foreground flex min-h-12 flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2 text-xs"
+        )}
+      >
+        <span>© {site.name}. Built in public, mostly at night.</span>
 
-      <nav className="-mx-[13px] flex items-center">
-        <IconLink
-          href={site.chatgpt}
-          icon={ChatGptIcon}
-          label={`Ask ChatGPT about ${site.name}`}
-        />
-
-        {site.socials.map((social) => (
+        <nav className="-mx-[13px] flex items-center">
           <IconLink
-            href={social.href}
-            icon={MARK[social.key]}
-            key={social.href}
-            label={social.label}
+            href={site.chatgpt}
+            icon={ChatGptIcon}
+            label={`Ask ChatGPT about ${site.name}`}
           />
-        ))}
 
-        <IconLink
-          href={`mailto:${site.email}`}
-          icon={Mail01Icon}
-          label="Email"
-        />
+          {site.socials.map((social) => (
+            <IconLink
+              href={social.href}
+              icon={MARK[social.key]}
+              key={social.href}
+              label={social.label}
+            />
+          ))}
 
-        {/* Links are destinations, the toggles change this page, so a rule
-            between them stops them reading as two more links. */}
-        <span aria-hidden="true" className="bg-border mx-3 h-3.5 w-px" />
+          <IconLink
+            href={`mailto:${site.email}`}
+            icon={Mail01Icon}
+            label="Email"
+          />
 
-        <SoundToggle />
-        <ThemeToggle />
-      </nav>
-    </div>
-  </footer>
+          {/* Links are destinations, the toggles change this page, so a rule
+              between them stops them reading as two more links. */}
+          <span aria-hidden="true" className="bg-border mx-3 h-3.5 w-px" />
+
+          <SoundToggle />
+          <ThemeToggle />
+        </nav>
+      </div>
+    </footer>
+  </ViewTransition>
 );
