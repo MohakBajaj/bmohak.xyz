@@ -1,0 +1,184 @@
+src/components/crafts/step-grid.tsx
+  s_6e10c786a2a46f::t_11bcd3c7800ea9 37-41
+  s_6e10c786a2a46f::t_d56f0b8cc8ccb8 5
+  s_6e10c786a2a46f::t_cd07bd447abb93 121
+  s_6e10c786a2a46f::t_8a0cfe4acb6868 136-137
+src/app/crafts/(crafts)/layout.tsx
+  s_6e10c786a2a46f::t_547df121b9ddcd 19-26
+  s_6e10c786a2a46f::t_f2f89cef5f5d0d 28
+src/components/magnetic.tsx
+  s_6e10c786a2a46f::t_12ac32685a904f 1-10,13-21,29-31,33-34,36-46,54-56,58-60,64-66,74-75
+  s_6e10c786a2a46f::t_894e581909e258 11-12,22-28,61-62,67-68,70-73
+  s_6e10c786a2a46f::t_45197e89956d8d 32,35,47-53,57,63,69
+src/components/pointer-link.tsx
+  s_6e10c786a2a46f::t_85f8ebb3f655d1 1-23,25-26,29-64
+  s_6e10c786a2a46f::t_019699c0966b43 24
+  s_6e10c786a2a46f::t_71aaa7a42f1681 27-28
+src/components/playfield.tsx
+  s_6e10c786a2a46f::t_ac9cf1505f0a4a 93
+  s_6e10c786a2a46f::t_acbdb1736c3b15 1-16,18-55,57-59,61-76,80,82-84,86-90,92,94-110,112-116
+  s_6e10c786a2a46f::t_bb4a4694dfb75f 60,77,91
+  s_6e10c786a2a46f::t_7929f955ee957e 78-79,81
+  s_6e10c786a2a46f::t_216fd2b449865d 111
+  s_6e10c786a2a46f::t_27db7950367921 17
+  s_6e10c786a2a46f::t_6fddda36f0e058 56
+  s_6e10c786a2a46f::t_403396f7433bc1 85
+src/components/toc-minimap.tsx
+  s_6e10c786a2a46f::t_a9ce1e76d0d81e 18-22,37-44,46-67,106-108
+  s_6e10c786a2a46f::t_aa1db269851d5e 45
+  s_6e10c786a2a46f::t_9e3991d0d28710 36
+src/components/stack-tabs.tsx
+  s_6e10c786a2a46f::t_53b65985a6e99c 44
+  s_6e10c786a2a46f::t_a9ad560441b3d1 3
+  s_6e10c786a2a46f::t_a1f11f7f678450 14
+  s_6e10c786a2a46f::t_f4a0c3af8adec8 45,50
+  s_6e10c786a2a46f::t_98273e965130b0 39,95-100,102-109,111,115-116,118-130
+  s_6e10c786a2a46f::t_fde0dbc409dc9f 46-47,61
+  s_6e10c786a2a46f::t_9e3991d0d28710 53-55
+  s_6e10c786a2a46f::t_0fd9c629c1815c 93
+  s_6e10c786a2a46f::t_c65053d232c07f 5
+  s_6e10c786a2a46f::t_8db963296a388c 4,21-22,24-25,30,32-38,52,56,101,110,135,138
+  s_6e10c786a2a46f::t_d00478722475be 6,15,17-20,23,26-27,40-43,48-49,51,57-60,62-85,91,112-114,117
+  s_6e10c786a2a46f::t_470493d0784dda 13,16
+src/components/lifeline/lifeline-marker.tsx
+  s_6e10c786a2a46f::t_7990d871eeb564 49,56-57
+  s_6e10c786a2a46f::t_f9289aceab08e9 16
+src/lib/ui-sound.ts
+  s_6e10c786a2a46f::t_f37fd65289cddf 4
+  s_6e10c786a2a46f::t_b20a2b8314dfcd 17,22,30
+src/app/writing/(posts)/layout.tsx
+  s_6e10c786a2a46f::t_4615bfb47d2813 19-26
+src/components/decode-text.tsx
+  s_6e10c786a2a46f::t_90d6591bdd2fd5 139-141
+  s_6e10c786a2a46f::t_14402f16681859 155-168
+  s_6e10c786a2a46f::t_244b5180ca9385 29,36
+  s_6e10c786a2a46f::t_f995e8f967b703 42-44
+  s_6e10c786a2a46f::t_8fd240afedbc44 125
+  s_6e10c786a2a46f::t_960e055d0a2bb2 107-108,132,143
+  s_6e10c786a2a46f::t_9bc418e8fcbb1a 1-28,30-35,37-41,45-106,109-124,126-131,133-138,142,144-154,169-171
+src/components/night-word.tsx
+  s_6e10c786a2a46f::t_3d5166a80c54c0 5
+  s_6e10c786a2a46f::t_a45de3dbda67c7 1-3,6,9-10,18-24,31-52
+  s_6e10c786a2a46f::t_068014095d7407 4,7-8,25-30
+  s_6e10c786a2a46f::t_094abdca95fc4f 11-13,15-17
+src/components/theme-toggle.tsx
+  s_6e10c786a2a46f::t_9e3991d0d28710 45-49
+  s_6e10c786a2a46f::t_cb5e3bf86e2df0 6,24-27,31-41,54
+  s_6e10c786a2a46f::t_849c428e45622f 42,50,55
+src/components/site-footer.tsx
+  s_6e10c786a2a46f::t_d3ce903e87e422 14
+  s_6e10c786a2a46f::t_ff74d2badc763d 51
+  s_6e10c786a2a46f::t_fa94c4abc0dce6 69-70
+  s_6e10c786a2a46f::t_4386c88d1094e0 79-81,83,86,88-89
+  s_6e10c786a2a46f::t_25073123d71824 52-53
+  s_6e10c786a2a46f::t_484adb845bbdb2 13
+  s_6e10c786a2a46f::t_1636cb7a96d815 108
+  s_6e10c786a2a46f::t_31a96aeb53cdd8 107
+  s_6e10c786a2a46f::t_75764638781c92 3
+  s_6e10c786a2a46f::t_29c28b2b6a5aea 84-85
+  s_6e10c786a2a46f::t_2aa312a8b2c6d3 82,87,91
+src/components/lifeline/lifeline.tsx
+  s_6e10c786a2a46f::t_c4b7d0ad3cc453 60
+src/components/lifeline/lifeline-vertical.tsx
+  s_6e10c786a2a46f::t_63712fbb8a3eea 215-216
+src/components/avatar-stage.tsx
+  s_6e10c786a2a46f::t_e66226bcd9899c 12-13,47,49,64
+  s_6e10c786a2a46f::t_5cccdf1e6de3bb 1-11,14-46,48,50-63,65-66
+src/app/globals.css
+  s_6e10c786a2a46f::t_1845d9fd2a0a9f 190,421-432,437-456
+  s_6e10c786a2a46f::t_36d3b7e319f406 182-189
+  s_6e10c786a2a46f::t_ed63c1c3efb045 433-436
+  s_6e10c786a2a46f::t_b6c08a531548fa 153-181
+  s_6e10c786a2a46f::t_469d2f218b1a1c 192-212
+  s_6e10c786a2a46f::t_60f88bc0d34da9 410-420
+  s_6e10c786a2a46f::t_6419588fa3552f 191
+src/components/site-nav.tsx
+  s_6e10c786a2a46f::t_64ae10d7e04902 62
+  s_6e10c786a2a46f::t_ecc5086ac8d3cd 83
+  s_6e10c786a2a46f::t_47f30ef4ee38bd 20
+  s_6e10c786a2a46f::t_df7d18c7c22db4 81-82,85-86,89
+  s_6e10c786a2a46f::t_153dd899b7d928 29,33-38
+  s_6e10c786a2a46f::t_4979001561fda8 48
+  s_6e10c786a2a46f::t_b7fbc92498498a 84
+  s_6e10c786a2a46f::t_80e44c7b1defcb 87-88
+  s_6e10c786a2a46f::t_f803e80885d4e5 74-76
+  s_6e10c786a2a46f::t_e3f39e88c10db4 64,72-73,77
+src/components/site-shell.tsx
+  s_6e10c786a2a46f::t_97d92be61d6418 35-39
+  s_6e10c786a2a46f::t_4d12d9244635ff 76
+  s_6e10c786a2a46f::t_9783010cb691ba 63-70
+  s_6e10c786a2a46f::t_c5d74a5bf82ade 3
+src/app/writing/page.tsx
+  s_6e10c786a2a46f::t_e1f066fcee334c 34-36
+  s_6e10c786a2a46f::t_0cda19a3423b92 3
+src/lib/site.ts
+  s_6e10c786a2a46f::t_6e2d62e020cb07 45
+src/components/lifeline/lifeline-desktop.tsx
+  s_6e10c786a2a46f::t_95a858b74ff136 99
+src/components/command-k.tsx
+  s_6e10c786a2a46f::t_55553f53fee27a 4-11
+  s_6e10c786a2a46f::t_50426080a4028e 84
+  s_6e10c786a2a46f::t_d13e7e327a2139 189
+  s_6e10c786a2a46f::t_fe2fdedf4e12bd 105-109
+  s_6e10c786a2a46f::t_9621bf40e686da 204-207
+  s_6e10c786a2a46f::t_f9c2844cc3dbd3 220
+  s_6e10c786a2a46f::t_7dec91f2bafb33 217
+  s_6e10c786a2a46f::t_1d9f63d285338e 249
+  s_6e10c786a2a46f::t_0d48e3a5a95eec 188,190-191,193,196
+  s_6e10c786a2a46f::t_9dc156b369bb6a 14,20,27-30,40,47,54,61,68,75-76,78-79,100,277,288,315,324,368
+  s_6e10c786a2a46f::t_0155ab6c038f40 209
+  s_6e10c786a2a46f::t_0f44a6d6eeb71b 115-121
+  s_6e10c786a2a46f::t_cefedcee890c17 90
+  s_6e10c786a2a46f::t_a5524bf38f9e3a 1-3,13,17,21-26,31,33,35,37-39,41-43,51-53,55-60,70-74,81-82,85-87,89,92-97,99,101-104,110-114,130-133,135-140,143,148-149,192,194-195,202-203,208,210-216,218-219,221-245,255-257,394
+  s_6e10c786a2a46f::t_ea48541ea442f1 134
+  s_6e10c786a2a46f::t_f6178c73409680 258-260
+  s_6e10c786a2a46f::t_d01abced832fa1 16,19,36,44-46,48-50,62-66,77,80,83,98,329,334,338
+  s_6e10c786a2a46f::t_8ceee15ae101f4 15
+  s_6e10c786a2a46f::t_0df45a426c3087 12
+  s_6e10c786a2a46f::t_f55879a877c68e 91
+  s_6e10c786a2a46f::t_e15379b70a6e74 122-129
+  s_6e10c786a2a46f::t_53b65985a6e99c 263-276,278-287,289-314,316-323,325-328,330,332-333,335-337,339-367,369-380
+  s_6e10c786a2a46f::t_56a555ee8d4c8e 141-142,144-147
+  s_6e10c786a2a46f::t_e6ecbcf127d357 67,69,246-248,250-254
+  s_6e10c786a2a46f::t_24f958ac117d9b 331
+  s_6e10c786a2a46f::t_754f2303e7b5fd 166-187
+  s_6e10c786a2a46f::t_4e6fe474d1c22b 88
+  s_6e10c786a2a46f::t_df9f3442ea4387 150-159,164-165
+  s_6e10c786a2a46f::t_65e2756617aafb 32,34
+  s_6e10c786a2a46f::t_07467cbc5ce632 197-201
+  s_6e10c786a2a46f::t_02452665c74d85 261-262
+  s_6e10c786a2a46f::t_72adbb11e267a7 381-393
+  s_6e10c786a2a46f::t_e4be59ec28ad4c 160-163
+  s_6e10c786a2a46f::t_d412e1fffb6f8e 18
+src/components/article-toc.tsx
+  s_6e10c786a2a46f::t_d4d5c71d10a2ee 3,17-20,24-26,29-34,36,48-56
+  s_6e10c786a2a46f::t_219c30414d6feb 71,74
+src/app/crafts/page.tsx
+  s_6e10c786a2a46f::t_83d322138c57b5 3
+  s_6e10c786a2a46f::t_a70add413b26c0 22,34
+src/app/about/page.tsx
+  s_6e10c786a2a46f::t_06447d289d1f39 56-59
+  s_6e10c786a2a46f::t_b8d5ff85baa030 73
+  s_6e10c786a2a46f::t_ed1fe5f0304e82 69-72,74-79
+  s_6e10c786a2a46f::t_4fc8b93fae765b 6
+  s_6e10c786a2a46f::t_184d49a94cb726 284-288
+src/app/layout.tsx
+  s_6e10c786a2a46f::t_e416a86f147940 12,15
+  s_6e10c786a2a46f::t_d7028bda07aab6 117-118
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "b8bc8bfd0cc9ee6d035cf59eceb0e7f8f8735b38",
+  "prompts": {},
+  "sessions": {
+    "s_6e10c786a2a46f": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "78090479-5e5e-42bf-880d-ba699f7a9156",
+        "model": "grok-4.6"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
