@@ -150,6 +150,66 @@
       transform: scale(2.6);
     }
   }
+  @keyframes playfield-glyph {
+    from {
+      opacity: 0.42;
+      transform: translate(-50%, -50%) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -50%) translateY(-16px);
+    }
+  }
+  @keyframes night-star {
+    0%,
+    100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes tui-cursor {
+    0%,
+    45% {
+      opacity: 1;
+    }
+    55%,
+    100% {
+      opacity: 0.18;
+    }
+  }
+  @keyframes command-k-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+html {
+  color-scheme: light;
+  scroll-padding-top: calc(3rem + env(safe-area-inset-top, 0px));
+  touch-action: manipulation;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+:where(a, button):focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+}
+
+.command-k-session input:focus-visible {
+  outline: none;
+}
+
+:is(h1, h2, h3, h4, h5, h6)[id] {
+  scroll-margin-top: calc(4rem + env(safe-area-inset-top, 0px));
 }
 
 :root {
@@ -347,6 +407,53 @@
     animation: contribution-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: calc((var(--w, 0) + var(--d, 0) * 0.15) * 12ms);
   }
+
+  @media (hover: hover) and (pointer: fine) {
+    .contribution-in {
+      transform-box: fill-box;
+      transform-origin: center;
+      transition: transform 150ms ease;
+    }
+    .contribution-in:hover {
+      transform: scale(1.35);
+    }
+  }
+
+  .playfield-glyph.is-on {
+    animation: playfield-glyph 640ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .night-star {
+    animation: night-star 1.6s ease-in-out infinite;
+  }
+
+  .tui-cursor {
+    animation: tui-cursor 1.1s steps(1, end) infinite;
+  }
+
+  .command-k-session {
+    animation: command-k-in 180ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+}
+
+.playfield {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  overflow: hidden;
+}
+
+.playfield-glyph {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1;
+  color: currentColor;
+  opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

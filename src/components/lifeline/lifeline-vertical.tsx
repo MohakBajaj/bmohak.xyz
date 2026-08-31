@@ -212,7 +212,8 @@ const LifelineVerticalEntry = forwardRef<
     <li
       ref={ref}
       className={hasContent ? "pb-10" : "pb-3"}
-      aria-label={marker.label ?? `${marker.year}`}
+      aria-hidden={hasContent ? undefined : true}
+      aria-label={hasContent ? (marker.label ?? `${marker.year}`) : undefined}
     >
       <div
         className={cn(

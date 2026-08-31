@@ -96,6 +96,7 @@ export function LifelineDesktop({
   return (
     <section
       ref={sectionRef}
+      data-lifeline=""
       data-lifeline-mode={isEmbed ? "embed" : "page"}
       // Embedded, the module needs a tab stop to be operable at all — a
       // page-mode lifeline is reached just by scrolling to it.

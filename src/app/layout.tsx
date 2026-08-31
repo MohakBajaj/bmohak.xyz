@@ -9,8 +9,10 @@ import {
 import { ViewTransition } from "react";
 
 import "./globals.css";
+import { CommandK } from "@/components/command-k";
 import { Haptics } from "@/components/haptics";
 import { JsonLd } from "@/components/json-ld";
+import { Playfield } from "@/components/playfield";
 import { RouteCue } from "@/components/route-cue";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -112,6 +114,8 @@ const RootLayout = ({ children }: LayoutProps<"/">) => (
         </TooltipProvider>
         <Haptics />
         <RouteCue />
+        <Playfield />
+        <CommandK />
       </ThemeProvider>
     </body>
   </html>

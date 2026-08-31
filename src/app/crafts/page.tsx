@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
+import { PointerLink } from "@/components/pointer-link";
 import { PageShell } from "@/components/site-shell";
 import { crafts } from "@/lib/crafts";
 
@@ -19,7 +19,7 @@ const Crafts = () => (
     <ul className="page-enter grid grid-cols-[minmax(0,1fr)] gap-5 text-sm [--page-enter-base:120ms]">
       {crafts.map((craft) => (
         <li key={craft.slug}>
-          <Link className="group block" href={`/crafts/${craft.slug}`}>
+          <PointerLink href={`/crafts/${craft.slug}`}>
             <div className="flex flex-wrap items-baseline justify-between gap-x-4">
               <h2 className="font-medium text-balance group-hover:underline group-hover:underline-offset-4">
                 {craft.title}
@@ -31,7 +31,7 @@ const Crafts = () => (
             <p className="text-muted-foreground mt-1 leading-relaxed text-pretty">
               {craft.tagline}
             </p>
-          </Link>
+          </PointerLink>
         </li>
       ))}
     </ul>

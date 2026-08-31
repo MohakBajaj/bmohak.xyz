@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
 
 import { TOCMinimap } from "@/components/toc-minimap";
@@ -13,22 +14,26 @@ interface Item {
 const EMPTY: Item[] = [];
 
 /*
-  Cached by selector, and the cache is the point: getSnapshot runs on every
-  render and must return the same reference each time or React re-renders
-  forever. Nothing subscribes — the headings are fixed for the life of the
-  page — so subscribe() is a no-op that returns its own unsubscribe.
+  Cached by path. getSnapshot must return the same reference when the
+  headings have not changed, or React re-renders forever. An empty read is
+  not cached: on a client navigation the first snapshot often runs before
+  the new article is in the document.
 */
 let cache: { key: string; items: Item[] } | null = null;
 
-const subscribe = () => () => {
-  // Headings never change after hydration; nothing to listen to.
+const subscribe = (onStoreChange: () => void) => {
+  const id = window.requestAnimationFrame(onStoreChange);
+  return () => window.cancelAnimationFrame(id);
 };
 
-const read = (selector: string): Item[] => {
-  if (cache?.key === selector) {
-    return cache.items;
-  }
+const sameItems = (left: Item[], right: Item[]) =>
+  left.length === right.length &&
+  left.every(
+    (item, index) =>
+      item.url === right[index]?.url && item.title === right[index]?.title
+  );
 
+const read = (selector: string, path: string): Item[] => {
   const article = document.querySelector(selector);
   const headings = article
     ? [...article.querySelectorAll<HTMLElement>("h2[id], h3[id], h4[id]")]
@@ -40,7 +45,15 @@ const read = (selector: string): Item[] => {
     url: `#${heading.id}`,
   }));
 
-  cache = { items, key: selector };
+  if (items.length === 0) {
+    return EMPTY;
+  }
+
+  if (cache?.key === path && sameItems(cache.items, items)) {
+    return cache.items;
+  }
+
+  cache = { items, key: path };
   return items;
 };
 
@@ -55,9 +68,10 @@ const read = (selector: string): Item[] => {
  * The ids themselves come from rehype-slug, which does run at build.
  */
 export const ArticleToc = ({ selector = "article" }: { selector?: string }) => {
+  const pathname = usePathname();
   const items = useSyncExternalStore(
     subscribe,
-    () => read(selector),
+    () => read(selector, pathname),
     () => EMPTY
   );
 

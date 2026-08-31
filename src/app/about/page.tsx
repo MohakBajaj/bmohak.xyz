@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Suspense } from "react";
 import type { ReactNode } from "react";
 
+import { AvatarStage } from "@/components/avatar-stage";
 import { Favicon } from "@/components/favicon";
 import {
   GitHubContributions,
@@ -52,7 +53,10 @@ const Section = ({
   </section>
 );
 
-const About = async () => {
+const About = async ({ searchParams }: PageProps<"/about">) => {
+  const params = await searchParams;
+  const stackParam =
+    typeof params.stack === "string" ? params.stack : undefined;
   const openSource = await getCachedOpenSource();
   // Not awaited: it streams into the Suspense boundary below.
   const contributions = getCachedContributions(GITHUB_USERNAME);
@@ -62,14 +66,17 @@ const About = async () => {
       <div className="page-enter grid grid-cols-[minmax(0,1fr)] gap-10 text-sm [--page-enter-base:120ms]">
         <section>
           {/* Float, so the prose wraps around it the way his does. */}
-          <Image
-            alt="Mohak Bajaj"
-            className="float-right mb-4 ml-6 w-28 rounded-lg outline outline-black/10 sm:w-36 dark:outline-white/10"
-            height={720}
-            priority
-            src="/avatar.jpg"
-            width={720}
-          />
+          <AvatarStage>
+            <Image
+              alt="Mohak Bajaj"
+              className="h-auto w-full"
+              draggable={false}
+              height={720}
+              priority
+              src="/avatar.jpg"
+              width={720}
+            />
+          </AvatarStage>
 
           <div className={`space-y-3 text-pretty ${PROSE}`}>
             <p>
@@ -274,7 +281,11 @@ const About = async () => {
         </Section>
 
         <Section title="Stack">
-          <StackTabs groups={stack} />
+          <StackTabs
+            groups={stack}
+            initial={stackParam}
+            key={stackParam ?? "ai"}
+          />
         </Section>
       </div>
     </PageShell>

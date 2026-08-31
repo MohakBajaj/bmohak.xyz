@@ -16,7 +16,14 @@ const PostLayout = ({ children }: LayoutProps<"/writing">) => (
   <div className="flex min-h-dvh flex-col bg-white text-black antialiased transition-colors duration-300 dark:bg-black dark:text-white">
     <SiteNav />
 
-    <main className={cn(SITE_CONTAINER, "max-w-2xl flex-1 pt-24 pb-16")}>
+    <main
+      className={cn(
+        SITE_CONTAINER,
+        "max-w-2xl flex-1 pt-[calc(6rem+env(safe-area-inset-top,0px))] pb-16"
+      )}
+      id="content"
+      tabIndex={-1}
+    >
       <article className="typeset typeset-docs">{children}</article>
     </main>
 

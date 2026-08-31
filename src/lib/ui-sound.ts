@@ -1,6 +1,7 @@
 "use client";
 
 import { clickSoftSound } from "@/lib/click-soft";
+import { hoverTickSound } from "@/lib/hover-tick";
 import { playSound } from "@/lib/sound-engine";
 import { switchOffSound } from "@/lib/switch-off";
 import { switchOnSound } from "@/lib/switch-on";
@@ -13,11 +14,12 @@ export const SOUND_KEY = "sound";
  * and this decides how it sounds. Nothing is wired to raw pointer contact:
  * touching a control that does nothing should make no noise.
  */
-export type Cue = "toggle-on" | "toggle-off" | "select" | "navigate";
+export type Cue = "toggle-on" | "toggle-off" | "select" | "navigate" | "tick";
 
 const ASSET: Record<Cue, typeof clickSoftSound> = {
   navigate: clickSoftSound,
   select: clickSoftSound,
+  tick: hoverTickSound,
   "toggle-off": switchOffSound,
   "toggle-on": switchOnSound,
 };
@@ -25,6 +27,7 @@ const ASSET: Record<Cue, typeof clickSoftSound> = {
 const VOLUME: Record<Cue, number> = {
   navigate: 0.22,
   select: 0.28,
+  tick: 0.16,
   "toggle-off": 0.3,
   "toggle-on": 0.3,
 };

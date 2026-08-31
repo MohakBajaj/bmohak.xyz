@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { useSoundPreference } from "@/components/sound-toggle";
 import { useSound } from "@/hooks/use-sound";
 import { switchOnSound } from "@/lib/switch-on";
 import { cn } from "@/lib/utils";
@@ -33,7 +34,11 @@ export const StepGrid = () => {
   const [playing, setPlaying] = useState(false);
   const [bpm, setBpm] = useState(120);
 
-  const [playSwitch] = useSound(switchOnSound, { volume: 0.4 });
+  const { enabled: soundOn } = useSoundPreference();
+  const [playSwitch] = useSound(switchOnSound, {
+    soundEnabled: soundOn,
+    volume: 0.4,
+  });
 
   // The transport reads the grid, so keep a ref and let the interval stay put
   // instead of tearing down and rebuilding it on every toggle. Synced in an
@@ -113,7 +118,7 @@ export const StepGrid = () => {
                 aria-label={`${VOICES[voice]} step ${index + 1}`}
                 aria-pressed={on}
                 className={cn(
-                  "border-border h-5 flex-1 rounded-xs border transition-[background-color,border-color,scale] active:scale-[0.96]",
+                  "border-border min-h-8 flex-1 rounded-xs border transition-[background-color,border-color,scale] active:scale-[0.96]",
                   on ? "bg-foreground border-foreground" : "hover:bg-border/60",
                   index === activeStep && "border-foreground"
                 )}
@@ -128,7 +133,8 @@ export const StepGrid = () => {
 
       <figcaption className="border-border flex items-center justify-between gap-4 border-t px-3 py-2">
         <button
-          className="text-muted-foreground hover:text-foreground text-xs transition-[color,scale] active:scale-[0.96]"
+          aria-pressed={playing}
+          className="text-muted-foreground hover:text-foreground min-h-8 text-xs transition-[color,scale] active:scale-[0.96]"
           onClick={() => setPlaying((on) => !on)}
           type="button"
         >

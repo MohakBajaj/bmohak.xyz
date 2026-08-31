@@ -16,9 +16,16 @@ const CraftLayout = ({ children }: LayoutProps<"/crafts">) => (
   <div className="flex min-h-dvh flex-col bg-white text-black antialiased transition-colors duration-300 dark:bg-black dark:text-white">
     <SiteNav />
 
-    <main className={cn(SITE_CONTAINER, "max-w-2xl flex-1 pt-24 pb-16")}>
+    <main
+      className={cn(
+        SITE_CONTAINER,
+        "max-w-2xl flex-1 pt-[calc(6rem+env(safe-area-inset-top,0px))] pb-16"
+      )}
+      id="content"
+      tabIndex={-1}
+    >
       <Link
-        className="text-muted-foreground hover:text-foreground text-xs transition-colors"
+        className="text-muted-foreground hover:text-foreground inline-flex min-h-10 items-center text-xs transition-colors"
         href="/crafts"
       >
         ← Crafts

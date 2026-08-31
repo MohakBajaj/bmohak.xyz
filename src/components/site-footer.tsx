@@ -1,5 +1,6 @@
 import {
   ChatGptIcon,
+  File01Icon,
   Github01Icon,
   Linkedin01Icon,
   Mail01Icon,
@@ -9,6 +10,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import type { IconSvgElement } from "@hugeicons/react";
 import { ViewTransition } from "react";
 
+import { Magnetic } from "@/components/magnetic";
+import { NightWord } from "@/components/night-word";
 import { SoundToggle } from "@/components/sound-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SITE_CONTAINER, site } from "@/lib/site";
@@ -45,7 +48,9 @@ const IconLink = ({
     rel="noopener noreferrer"
     target="_blank"
   >
-    <HugeiconsIcon className="size-4" icon={icon} strokeWidth={1.75} />
+    <Magnetic className="grid size-full place-items-center">
+      <HugeiconsIcon className="size-4" icon={icon} strokeWidth={1.75} />
+    </Magnetic>
   </a>
 );
 
@@ -61,8 +66,8 @@ export const SiteFooter = ({ floating = false }: { floating?: boolean }) => (
       className={cn(
         "shrink-0 transition-colors duration-300",
         floating
-          ? "bg-[rgba(255,255,255,0.95)] dark:bg-[rgba(0,0,0,0.95)]"
-          : "border-border border-t"
+          ? "bg-[rgba(255,255,255,0.95)] pb-[env(safe-area-inset-bottom,0px)] dark:bg-[rgba(0,0,0,0.95)]"
+          : "border-border border-t pb-[env(safe-area-inset-bottom,0px)]"
       )}
     >
       <div
@@ -71,9 +76,19 @@ export const SiteFooter = ({ floating = false }: { floating?: boolean }) => (
           "text-muted-foreground flex min-h-12 flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2 text-xs"
         )}
       >
-        <span>© {site.name}. Built in public, mostly at night.</span>
+        <span>
+          © {site.name}. Built in public, mostly at <NightWord />.
+          <a
+            className="text-foreground hover:text-muted-foreground ml-2 font-mono transition-colors"
+            href={site.tui}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            tui
+          </a>
+        </span>
 
-        <nav className="-mx-[13px] flex items-center">
+        <nav className="-mx-[13px] flex flex-wrap items-center justify-end">
           <IconLink
             href={site.chatgpt}
             icon={ChatGptIcon}
@@ -88,6 +103,8 @@ export const SiteFooter = ({ floating = false }: { floating?: boolean }) => (
               label={social.label}
             />
           ))}
+
+          <IconLink href={site.resume} icon={File01Icon} label="Resume" />
 
           <IconLink
             href={`mailto:${site.email}`}

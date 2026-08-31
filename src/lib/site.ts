@@ -42,5 +42,6 @@ export const site = {
     },
   ],
   title: "Mohak Bajaj, Full Stack Architect and DevOps Engineer",
+  tui: "https://tui.bmohak.xyz",
   url: "https://bmohak.xyz",
 } as const;

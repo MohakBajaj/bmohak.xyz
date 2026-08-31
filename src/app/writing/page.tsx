@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
+import { PointerLink } from "@/components/pointer-link";
 import { PageShell } from "@/components/site-shell";
 import { site } from "@/lib/site";
 import { isExternal, postsByYear } from "@/lib/writing";
@@ -31,20 +31,9 @@ const PostRow = ({ post }: { post: Post }) => {
 
   return (
     <li>
-      {external ? (
-        <a
-          className="group block"
-          href={post.href}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {body}
-        </a>
-      ) : (
-        <Link className="group block" href={post.href}>
-          {body}
-        </Link>
-      )}
+      <PointerLink external={external} href={post.href}>
+        {body}
+      </PointerLink>
     </li>
   );
 };

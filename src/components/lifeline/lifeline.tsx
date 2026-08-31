@@ -57,6 +57,7 @@ export function Lifeline(props: LifelineProps) {
                 )
               : "lifeline-typeset pt-5"
           }
+          data-lifeline=""
         >
           <LifelineVertical {...props} />
         </div>

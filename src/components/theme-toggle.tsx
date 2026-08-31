@@ -3,6 +3,7 @@
 import { Moon02Icon, Sun03Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
 
 import { cue } from "@/lib/ui-sound";
 
@@ -20,24 +21,38 @@ const withViewTransition = (update: () => void) => {
   update();
 };
 
-/**
- * Both icons stay mounted and cross-fade, rather than one being display:none.
- * The swap is driven by a CSS class on <html>, not React state, so this is the
- * dependency-free path: stack them, animate opacity/scale/blur, and both the
- * enter and the exit come for free.
- *
- * `size-10` is the hit area, not the icon — a 14px target is unusable on
- * touch. `-my-2` keeps the footer its original height.
- */
+const subscribe = () => () => {
+  // Client-only snapshot; nothing to listen to.
+};
+
 const ICON =
   "absolute size-3.5 transition-[opacity,scale,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]";
 
+const themeLabel = (ready: boolean, dark: boolean) => {
+  if (!ready) {
+    return "Toggle theme";
+  }
+
+  if (dark) {
+    return "Switch to light theme";
+  }
+
+  return "Switch to dark theme";
+};
+
 export const ThemeToggle = () => {
   const { setTheme, resolvedTheme } = useTheme();
+  const ready = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false
+  );
+  const dark = resolvedTheme === "dark";
 
   return (
     <button
-      aria-label="Toggle theme"
+      aria-label={themeLabel(ready, dark)}
+      aria-pressed={ready ? dark : undefined}
       className="text-muted-foreground hover:text-foreground relative -my-2 inline-flex size-10 items-center justify-center transition-[color,scale] duration-300 active:scale-[0.96]"
       onClick={() => {
         const toDark = resolvedTheme !== "dark";

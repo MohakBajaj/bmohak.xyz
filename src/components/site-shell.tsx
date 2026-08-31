@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { DecodeText } from "@/components/decode-text";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { SITE_CONTAINER } from "@/lib/site";
@@ -31,7 +32,11 @@ export const HomeShell = ({ children }: { children: ReactNode }) => (
     {/* scroll-fade masks the edge of the one real scroller here: below
         md the vertical timeline scrolls in this box. Above md the scroller
         is dropped and the mask has nothing to key off, which is correct. */}
-    <main className="scroll-fade min-h-0 flex-1 overflow-y-auto pt-12 md:overflow-hidden">
+    <main
+      className="scroll-fade min-h-0 flex-1 overflow-y-auto pt-[calc(3rem+env(safe-area-inset-top,0px))] md:overflow-hidden"
+      id="content"
+      tabIndex={-1}
+    >
       {children}
     </main>
     <SiteFooter floating />
@@ -55,13 +60,20 @@ export const PageShell = ({
   <div className={cn("flex min-h-dvh flex-col", SURFACE)}>
     <SiteNav />
 
-    <main className={cn(SITE_CONTAINER, "max-w-xl flex-1 pt-24 pb-16")}>
+    <main
+      className={cn(
+        SITE_CONTAINER,
+        "max-w-xl flex-1 pt-[calc(6rem+env(safe-area-inset-top,0px))] pb-16"
+      )}
+      id="content"
+      tabIndex={-1}
+    >
       {/* The one place the 12/14 rule is relaxed, matching
           haydenbleasel.com: a page needs a title that reads as one, and at
           14px it was indistinguishable from the prose under it. Meta and
           chrome stay on the two-step scale. */}
       <h1 className="font-heading page-enter-self text-sm font-medium tracking-tight text-balance">
-        {title}
+        <DecodeText text={title} trigger="mount" />
       </h1>
       <p className="text-muted-foreground page-enter-self mt-2 text-sm leading-relaxed text-pretty [animation-delay:80ms]">
         {description}

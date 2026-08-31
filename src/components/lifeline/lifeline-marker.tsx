@@ -13,6 +13,7 @@ import {
 import { useLifelineFireworks } from "./lifeline-fireworks";
 import { useLifelineHoverImage } from "./lifeline-hover-image";
 import { aggregateLifelinePeople, LifelinePeople } from "./lifeline-people";
+import { hasMarkerContent } from "./lifeline-utils";
 import type { LifelineMarker } from "./types";
 
 interface LifelineMarkerColumnProps {
@@ -45,13 +46,15 @@ export const LifelineMarkerColumn = forwardRef<
   const people = aggregateLifelinePeople(marker);
   const hoverImage = useLifelineHoverImage();
   const fireworks = useLifelineFireworks();
+  const empty = !hasMarkerContent(marker);
 
   return (
     <div
       ref={ref}
       className="group will-change-opacity relative shrink-0 pr-8 transition-opacity duration-300 ease-out"
       style={{ width: minWidth }}
-      aria-label={marker.label ?? `${marker.year}`}
+      aria-hidden={empty || undefined}
+      aria-label={empty ? undefined : (marker.label ?? `${marker.year}`)}
     >
       <div
         className={cn("relative", animateIntro && "lifeline-marker-intro")}
