@@ -1,6 +1,8 @@
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
+import { homepageLink } from "./src/lib/discovery-links";
+
 const nextConfig: NextConfig = {
   /*
     Next blocks cross-origin requests to dev-only assets by default, so a dev
@@ -8,6 +10,24 @@ const nextConfig: NextConfig = {
     Dev-only setting; production is unaffected.
   */
   allowedDevOrigins: ["*.local"],
+  /*
+    Agents discover machine-readable resources from the homepage response,
+    before they read HTML. Registered relations only: api-catalog,
+    service-desc, service-doc, describedby.
+  */
+  headers() {
+    return [
+      {
+        headers: [
+          {
+            key: "Link",
+            value: homepageLink,
+          },
+        ],
+        source: "/",
+      },
+    ];
+  },
   /*
     Markdown negotiation reads the essay MDX off disk. The slug is chosen from
     the writing and crafts lists, so the tracer never sees a literal path.
