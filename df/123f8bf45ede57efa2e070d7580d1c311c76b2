@@ -1,0 +1,33 @@
+src/app/auth.md/route.ts
+  s_330ae76c6cb511::t_01228097c3156e 1-5
+src/lib/agent-auth.ts
+  s_330ae76c6cb511::t_6bc70138d922ef 125-130
+  s_330ae76c6cb511::t_f535c92d2aa79d 1-115
+  s_330ae76c6cb511::t_6e9761fa49590b 116-118,120-124
+  s_330ae76c6cb511::t_16daa33f77cd30 119
+src/app/.well-known/oauth-authorization-server/route.ts
+  s_330ae76c6cb511::t_bbc53c60d200a4 2-5
+  s_330ae76c6cb511::t_6077bd9a063a16 1
+src/app/.well-known/agent-auth/route.ts
+  s_330ae76c6cb511::t_87afbf86b7b18e 6-9
+  s_330ae76c6cb511::t_9e37a32d329377 1-5,10-11
+  s_330ae76c6cb511::t_518f27dec8d4a6 12
+src/app/.well-known/oauth-protected-resource/route.ts
+  s_330ae76c6cb511::t_f3e83e08a4acb1 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "df123f8bf45ede57efa2e070d7580d1c311c76b2",
+  "prompts": {},
+  "sessions": {
+    "s_330ae76c6cb511": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "c713048a-b5e4-41ff-bc71-9e15e9030e85",
+        "model": "grok-4.7"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
