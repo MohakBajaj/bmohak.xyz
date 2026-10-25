@@ -8,6 +8,15 @@ const nextConfig: NextConfig = {
     Dev-only setting; production is unaffected.
   */
   allowedDevOrigins: ["*.local"],
+  /*
+    Markdown negotiation reads the essay MDX off disk. The slug is chosen from
+    the writing and crafts lists, so the tracer never sees a literal path.
+  */
+  outputFileTracingIncludes: {
+    "/md": ["./src/app/**/*.mdx"],
+    "/md/**": ["./src/app/**/*.mdx"],
+    "/md/\\[\\[...path\\]\\]": ["./src/app/**/*.mdx"],
+  },
   // .mdx files under app/ become routes; posts live in app/writing/(posts)/
   pageExtensions: ["ts", "tsx", "mdx"],
 };
