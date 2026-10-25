@@ -1,0 +1,28 @@
+next.config.ts
+  s_d4161a4c79431d::t_c28a579286a2d8 13
+  s_d4161a4c79431d::t_9f84ac0fdd5062 4-5,14-30
+src/app/.well-known/api-catalog/route.ts
+  s_d4161a4c79431d::t_5d013beed37307 10-15
+  s_d4161a4c79431d::t_2c45070c980e06 1-9,16
+src/app/.well-known/service-desc/route.ts
+  s_d4161a4c79431d::t_7b73327dead0d6 1-10
+src/lib/discovery-links.ts
+  s_d4161a4c79431d::t_86e1b21cc71c40 1
+  s_d4161a4c79431d::t_327575325a712c 2-84
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "40c33fadcef77d3e05c38e739fb3a963e58b61a7",
+  "prompts": {},
+  "sessions": {
+    "s_d4161a4c79431d": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "014b06b6-cc1a-4c14-bf72-b639b6bcc7bd",
+        "model": "grok-4.7"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
