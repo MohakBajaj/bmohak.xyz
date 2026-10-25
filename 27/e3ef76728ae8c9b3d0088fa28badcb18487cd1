@@ -1,0 +1,20 @@
+src/app/robots.ts
+  s_f142a09f1ede62::t_024821f14f38ce 5,8,10-12,14-16
+  s_f142a09f1ede62::t_87462b79d33d68 6-7,13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "27e3ef76728ae8c9b3d0088fa28badcb18487cd1",
+  "prompts": {},
+  "sessions": {
+    "s_f142a09f1ede62": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "44850ac0-359f-4dd8-a47e-408fe645403b",
+        "model": "grok-4.7"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
