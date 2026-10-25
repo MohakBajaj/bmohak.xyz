@@ -1,0 +1,35 @@
+src/lib/page-markdown.ts
+  s_249fdecfea7f03::t_c57437f00ff5ef 295
+  s_249fdecfea7f03::t_8541bd4ff05cd8 279,282-283
+  s_249fdecfea7f03::t_cf6d0bdebb3d67 1-278,280-281,284-294,296-377,379,382-385,388-395,398-405,408-415,417,420,423-433
+  s_249fdecfea7f03::t_d62c4696807c4a 378,380-381,386-387,396-397,406-407,416,418-419,421-422
+next.config.ts
+  s_249fdecfea7f03::t_685d307e300cae 11-19
+src/lib/markdown-negotiation.ts
+  s_249fdecfea7f03::t_eef2bc4ca1dfb9 4-7
+  s_249fdecfea7f03::t_83867dcb89a445 1-3
+  s_249fdecfea7f03::t_dc7d76445abdbc 8-10
+src/lib/markdown-paths.ts
+  s_249fdecfea7f03::t_cf5b73a485e577 6
+  s_249fdecfea7f03::t_a7b1f6af2ece7c 3-5
+  s_249fdecfea7f03::t_55b2ca2bbaf3e4 7-9
+src/app/md/[[...path]]/route.ts
+  s_249fdecfea7f03::t_ed218baed50946 1-25,27-28,30-31,33,35-36,38-42
+  s_249fdecfea7f03::t_8417866b71cd01 26,29,32,34,37,43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6c9d5df0292fce41ab900952616a6121f60f1678",
+  "prompts": {},
+  "sessions": {
+    "s_249fdecfea7f03": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a9cfda48-987c-4b01-9b7d-78f515416e86",
+        "model": "grok-4.7"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
