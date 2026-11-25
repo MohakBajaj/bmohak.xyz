@@ -1,0 +1,19 @@
+src/lib/writing.ts
+  s_0c053df603234e::t_731167064aaa95 26-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0d13e672510f3782cc3d6a6d0243bf49c0a8042d",
+  "prompts": {},
+  "sessions": {
+    "s_0c053df603234e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f8920d4-f877-4b30-9173-297860be4fc4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
