@@ -1,0 +1,29 @@
+src/components/lifeline/lifeline.tsx
+  s_a2f4063cdbe6fc::t_8fe8ddd7ee8d4b 36-40,42
+src/components/timeline.tsx
+  s_a2f4063cdbe6fc::t_b308febb486d58 5,7
+  s_a2f4063cdbe6fc::t_1c9523380b0f8c 46-51
+src/components/lifeline/types.ts
+  s_a2f4063cdbe6fc::t_e397ef8755e2fb 113
+  s_a2f4063cdbe6fc::t_27c474a6851d84 1-2,114
+src/components/json-ld.tsx
+  s_a2f4063cdbe6fc::t_9fe5648443869c 17
+src/app/llms.txt/route.ts
+  s_a2f4063cdbe6fc::t_2c8ee2abe0c712 1-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ed886615f60d33718fc1e543c72e339770149e3d",
+  "prompts": {},
+  "sessions": {
+    "s_a2f4063cdbe6fc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "79bd8c19-9c71-4d0b-9e62-30f92f903914",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
