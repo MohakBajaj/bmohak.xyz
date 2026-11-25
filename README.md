@@ -72,7 +72,7 @@ Anything with no file, or that flattens to a lump, falls back to its initial.
 
 **Vendored registry components are lint-ignored, not edited lightly.** Everything under `src/components/lifeline/`, `src/components/ui/`, plus the contribution graph, TOC minimap and line nav came from a shadcn registry. Re-running `shadcn add` overwrites them, including the small type fixes each one needed. Those fixes are commented where they are.
 
-**Sound is opt-in and event-based.** Haptics fire globally on `pointerdown`. Sound only fires on a real state change: the theme flipping, a tab switching, the route actually changing. It is off until asked for and the preference survives a reload. See `src/lib/ui-sound.ts`.
+**Sound is opt-in and event-based.** Haptics fire globally on `click` (a touch `pointerdown` is not a user activation, so iOS and Android ignore it there). Sound only fires on a real state change: the theme flipping, a tab switching, a link that leaves the page. It is off until asked for and the preference survives a reload. See `src/lib/ui-sound.ts` and `src/components/feedback.tsx`.
 
 **The GitHub section is live.** `src/lib/github.ts` reads repos, stats and pull requests at build time and caches for a day. It is unauthenticated, so 60 requests an hour per IP; set `GITHUB_TOKEN` to lift that. Every failure path returns empty and the section hides itself rather than erroring the route. Changing the shape of what it returns needs the cache key bumped, or a stale entry keeps being served.
 

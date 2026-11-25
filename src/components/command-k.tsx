@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   useEffect,
   useId,
@@ -87,6 +87,7 @@ const pad = (index: number) => String(index + 1).padStart(2, "0");
  */
 export const CommandK = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const labelId = useId();
   const inputId = useId();
   const [open, setOpen] = useState(false);
@@ -201,9 +202,12 @@ export const CommandK = () => {
 
   const go = (item: Item) => {
     close();
+    // Same rule as a link (see Feedback): sound only when it leaves the page.
+    if (item.href && item.href !== pathname) {
+      void cue("navigate");
+    }
     if (item.id === "tui" && item.href) {
       setNote("opening tui.bmohak.xyz");
-      void cue("select");
       window.open(item.href, "_blank", "noopener,noreferrer");
       window.setTimeout(() => setNote(null), 1400);
       return;

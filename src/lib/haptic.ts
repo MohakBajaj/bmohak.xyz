@@ -7,7 +7,11 @@ const isTouchDevice =
  * Trigger haptic feedback on mobile devices.
  * Uses Vibration API on Android/modern browsers, and iOS checkbox trick on iOS.
  *
- * @param pattern - Vibration duration (ms) or pattern.
+ * Call it inside a click (or keydown) handler. Both paths need a user
+ * activation, and a touch pointerdown is not one.
+ *
+ * @param pattern - Vibration duration (ms) or pattern. 10 ms reads as a tap;
+ * 50 ms reads as a buzz.
  * Custom patterns only work on Android devices. iOS uses fixed feedback.
  * See [Vibration API](https://developer.mozilla.org/docs/Web/API/Vibration_API)
  *
@@ -16,7 +20,7 @@ const isTouchDevice =
  *
  * <Button onClick={() => haptic()}>Haptic</Button>
  */
-export function haptic(pattern: number | number[] = 50) {
+export function haptic(pattern: number | number[] = 10) {
   try {
     if (!isTouchDevice) {
       return;

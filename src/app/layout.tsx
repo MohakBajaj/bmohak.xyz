@@ -10,10 +10,9 @@ import { ViewTransition } from "react";
 
 import "./globals.css";
 import { CommandK } from "@/components/command-k";
-import { Haptics } from "@/components/haptics";
+import { Feedback } from "@/components/feedback";
 import { JsonLd } from "@/components/json-ld";
 import { Playfield } from "@/components/playfield";
-import { RouteCue } from "@/components/route-cue";
 import { ThemeProvider } from "@/components/theme-provider";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -109,8 +108,7 @@ const RootLayout = ({ children }: LayoutProps<"/">) => (
             footer carry their own names; the root viewport just fades.
           */}
         <ViewTransition default="none">{children}</ViewTransition>
-        <Haptics />
-        <RouteCue />
+        <Feedback />
         <Playfield />
         <CommandK />
       </ThemeProvider>

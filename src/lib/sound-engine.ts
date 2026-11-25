@@ -28,6 +28,8 @@ export async function decodeAudioData(dataUri: string): Promise<AudioBuffer> {
 export interface PlaySoundOptions {
   volume?: number;
   playbackRate?: number;
+  /** Seconds into the sample to start from, to skip a silent lead-in. */
+  offset?: number;
   onEnd?: () => void;
 }
 
@@ -39,7 +41,7 @@ export async function playSound(
   dataUri: string,
   options: PlaySoundOptions = {}
 ): Promise<SoundPlayback> {
-  const { volume = 1, playbackRate = 1, onEnd } = options;
+  const { volume = 1, playbackRate = 1, offset = 0, onEnd } = options;
   const ctx = getAudioContext();
   if (ctx.state === "suspended") {
     await ctx.resume();
@@ -60,7 +62,7 @@ export async function playSound(
     onEnd?.();
   };
 
-  source.start(0);
+  source.start(0, offset);
 
   return {
     stop: () => {

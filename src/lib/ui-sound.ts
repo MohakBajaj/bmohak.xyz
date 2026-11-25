@@ -33,6 +33,15 @@ const VOLUME: Record<Cue, number> = {
 };
 
 /**
+ * Both switch samples open on silence: 45 ms before switch-on makes a sound,
+ * 14 ms for switch-off. Started from zero, the toggle sounds late.
+ */
+const OFFSET: Partial<Record<Cue, number>> = {
+  "toggle-off": 0.012,
+  "toggle-on": 0.04,
+};
+
+/**
  * The same sample at the same rate every time is what makes interface sound
  * read as cheap; a few percent of drift is enough to stop it feeling
  * mechanical without ever sounding like a different sound.
@@ -61,6 +70,7 @@ export const cue = async (name: Cue, options: { step?: number } = {}) => {
 
   try {
     await playSound(ASSET[name].dataUri, {
+      offset: OFFSET[name],
       playbackRate: drift() + step * STEP,
       volume: VOLUME[name],
     });

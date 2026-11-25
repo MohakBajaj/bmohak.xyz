@@ -13,8 +13,10 @@ const GLYPHS = "01#*+=/\\░";
 const POOL = 18;
 const GAP_MS = 34;
 const BURST = 8;
+// The nav and footer are chrome, not ground: a click in their padding is a
+// near-miss on a link or a toggle, and should not answer with a burst.
 const SKIP =
-  "a, button, input, textarea, select, [role='tab'], [role='dialog'], .lifeline-typeset, [data-lifeline]";
+  "a, button, input, textarea, select, nav, footer, [role='tab'], [role='dialog'], .lifeline-typeset, [data-lifeline]";
 
 const stamp = (
   node: HTMLSpanElement,
@@ -81,7 +83,9 @@ export const Playfield = () => {
       stamp(node, event.clientX, event.clientY, 0, 0);
     };
 
-    const onDown = (event: PointerEvent) => {
+    // A click, not pointerdown: on touch, pointerdown also starts every
+    // scroll, and a page should not tick each time you drag it.
+    const onDown = (event: MouseEvent) => {
       const { target } = event;
       if (target instanceof Element && target.closest(SKIP)) {
         return;
@@ -104,10 +108,10 @@ export const Playfield = () => {
     };
 
     window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("pointerdown", onDown);
+    window.addEventListener("click", onDown);
     return () => {
       window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("click", onDown);
       layer.replaceChildren();
     };
   }, [reduce]);
