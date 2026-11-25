@@ -12,7 +12,7 @@ import {
 import { OpenSourceSection } from "@/components/open-source";
 import { PageShell } from "@/components/site-shell";
 import { StackTabs } from "@/components/stack-tabs";
-import { achievements, projects, stack, work } from "@/lib/about";
+import { projects, stack, work } from "@/lib/about";
 import { getCachedContributions } from "@/lib/get-cached-contributions";
 import {
   GITHUB_PROFILE_URL,
@@ -24,16 +24,16 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   alternates: { canonical: "/about" },
   description:
-    "Where I've worked, what I've shipped, and the tools that survived.",
+    "Where I've worked, what I've shipped, and the tools still in daily rotation.",
   title: "About",
 };
 
 const LINK = "text-foreground underline underline-offset-4";
 const PROSE = "text-muted-foreground leading-relaxed";
 
-/* A page description, not a bio line — what is on the page, the way his reads. */
+/* A page description, not a bio line: what is on the page, the way his reads. */
 const ABOUT_INTRO =
-  "Where I've worked, what I've shipped, and the tools that survived.";
+  "Where I've worked, what I've shipped, and the tools still in daily rotation.";
 
 const Section = ({
   title,
@@ -88,23 +88,33 @@ const About = async ({ searchParams }: PageProps<"/about">) => {
                 target="_blank"
               >
                 CambrianEdge.ai
+              </a>{" "}
+              in Delhi NCR, where I design and build an AI-native marketing
+              platform. My degree is in Computer Science with a DevOps
+              specialisation, so I care just as much about the pipeline and
+              runtime as the application running on top of them.
+            </p>
+            <p>
+              I build with coding agents every day, and I review every diff
+              before it merges. Most of this site was written that way. The rule
+              for AI in products is simpler: if the model is not doing real work
+              the user actually notices, it does not belong in the product.
+            </p>
+            <p>
+              Outside of day-job architecture, I ship tools in public and write
+              about what broke along the way. A local-first Mac capture app
+              rewritten from Electron to Rust (
+              <a
+                className={LINK}
+                href="https://sayjot.xyz"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Jot
               </a>
-              , where I lead the architecture of an AI-native marketing
-              platform. B.Tech in CSE with a DevOps specialisation. Based in
-              Delhi NCR.
-            </p>
-            <p>
-              The work sits between the application and the pipeline that ships
-              it. I use AI aggressively. An agent wrote most of what runs on
-              this domain, and I read every diff before it lands. If the model
-              isn&apos;t responsible for the outcome the user cares about,
-              it&apos;s decoration, and it comes out.
-            </p>
-            <p>
-              Most of what I learn goes out in public, the misses included. A
-              portfolio that answers on port 22. A multiplayer live-coding jam
-              booth built over a weekend. A SaaS I never launched. The receipts
-              are on{" "}
+              ), a portfolio that answers on port 22, a multiplayer live-coding
+              jam booth from a weekend buildathon, and plenty of experiments
+              that never left the repo. The work lives on{" "}
               <a
                 className={LINK}
                 href={site.socials[0].href}
@@ -177,8 +187,18 @@ const About = async ({ searchParams }: PageProps<"/about">) => {
           </div>
 
           <p className={`border-border border-t border-dotted pt-5 ${PROSE}`}>
-            Alongside the roles above I was Secretary of the Xe-Tech Club at
-            UPES, established by{" "}
+            Beyond day jobs, I gave my first talk live at{" "}
+            <a
+              className={LINK}
+              href="https://github.com/MohakBajaj/build-2026-cli-live"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Microsoft Build //localhost
+            </a>{" "}
+            in Gurugram, mentored and judged the 36-hour EQUINOX hackathon with
+            Google Developer Groups, and earlier served as Secretary of the
+            Xe-Tech Club at UPES (established by{" "}
             <a
               className={LINK}
               href="https://xebia.com"
@@ -187,8 +207,9 @@ const About = async ({ searchParams }: PageProps<"/about">) => {
             >
               Xebia
             </a>
-            , and organised XeFest. {achievements[0]} {achievements[1]}{" "}
-            {achievements[3]} There is a{" "}
+            ), where I organised XeFest. I also placed third at INFAthon 4.0,
+            competed in eYantra at IIT Bombay, and volunteered as an IT teacher
+            at Adharshila NGO. Full timeline is in the{" "}
             <a
               className={LINK}
               href={site.resume}
@@ -197,7 +218,7 @@ const About = async ({ searchParams }: PageProps<"/about">) => {
             >
               resume
             </a>{" "}
-            too, and the rest is on{" "}
+            and on{" "}
             <a
               className={LINK}
               href={site.socials[2].href}
@@ -265,8 +286,8 @@ const About = async ({ searchParams }: PageProps<"/about">) => {
 
         <Section title="Education">
           <p className={PROSE}>
-            I hold a B.Tech in Computer Science &amp; Engineering with a DevOps
-            specialisation from the{" "}
+            Graduated in 2025 with a B.Tech in Computer Science &amp;
+            Engineering (DevOps specialisation) from the{" "}
             <a
               className={LINK}
               href="https://www.upes.ac.in"
@@ -275,8 +296,8 @@ const About = async ({ searchParams }: PageProps<"/about">) => {
             >
               University of Petroleum and Energy Studies
             </a>
-            , Dehradun (2021 – 2025), graduating with an 8.31 CGPA. Before that,
-            XII (CBSE) at Preet Public School in Delhi in 2020, at 89%.
+            , Dehradun (2021 – 2025, 8.31 CGPA). Completed Class XII (CBSE) at
+            Preet Public School in Delhi in 2020 (89%).
           </p>
         </Section>
 

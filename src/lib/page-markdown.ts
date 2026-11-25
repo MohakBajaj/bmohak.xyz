@@ -124,11 +124,11 @@ const aboutIntro = () => {
   const x = social("x");
 
   return [
-    `I'm a full stack architect at ${link("CambrianEdge.ai", "https://cambrianedge.ai")}, where I lead the architecture of an AI-native marketing platform. B.Tech in CSE with a DevOps specialisation. Based in Delhi NCR.`,
+    `I'm a full stack architect at ${link("CambrianEdge.ai", "https://cambrianedge.ai")} in Delhi NCR, where I design and build an AI-native marketing platform. My degree is in Computer Science with a DevOps specialisation, so I care just as much about the pipeline and runtime as the application running on top of them.`,
     "",
-    "The work sits between the application and the pipeline that ships it. I use AI aggressively. An agent wrote most of what runs on this domain, and I read every diff before it lands. If the model isn't responsible for the outcome the user cares about, it's decoration, and it comes out.",
+    "I build with coding agents every day, and I review every diff before it merges. Most of this site was written that way. The rule for AI in products is simpler: if the model is not doing real work the user actually notices, it does not belong in the product.",
     "",
-    `Most of what I learn goes out in public, the misses included. A portfolio that answers on port 22. A multiplayer live-coding jam booth built over a weekend. A SaaS I never launched. The receipts are on ${github ? link(github.label, github.href) : "GitHub"} and ${x ? link(x.label, x.href) : "X"}.`,
+    `Outside of day-job architecture, I ship tools in public and write about what broke along the way. A local-first Mac capture app rewritten from Electron to Rust (${link("Jot", "https://sayjot.xyz")}), a portfolio that answers on port 22, a multiplayer live-coding jam booth from a weekend buildathon, and plenty of experiments that never left the repo. The work lives on ${github ? link(github.label, github.href) : "GitHub"} and ${x ? link(x.label, x.href) : "X"}.`,
   ].join("\n");
 };
 
@@ -214,7 +214,7 @@ const about = async () => {
   return [
     "# About",
     "",
-    "Where I've worked, what I've shipped, and the tools that survived.",
+    "Where I've worked, what I've shipped, and the tools still in daily rotation.",
     "",
     aboutIntro(),
     "",
@@ -224,7 +224,7 @@ const about = async () => {
     "",
     also,
     "",
-    `There is a ${link("resume", site.resume)} too${elsewhere}.`,
+    `Full timeline is in the ${link("resume", site.resume)}${elsewhere}.`,
     "",
     "## Projects",
     "",
@@ -233,7 +233,7 @@ const about = async () => {
     "",
     "## Education",
     "",
-    "I hold a B.Tech in Computer Science & Engineering with a DevOps specialisation from the University of Petroleum and Energy Studies, Dehradun (2021 – 2025), graduating with an 8.31 CGPA. Before that, XII (CBSE) at Preet Public School in Delhi in 2020, at 89%.",
+    "Graduated in 2025 with a B.Tech in Computer Science & Engineering (DevOps specialisation) from the University of Petroleum and Energy Studies, Dehradun (2021 – 2025, 8.31 CGPA). Completed Class XII (CBSE) at Preet Public School in Delhi in 2020 (89%).",
     "",
     "## Stack",
     "",
@@ -386,7 +386,7 @@ export const renderPageMarkdown = async (pathname: string) => {
       return markdownDocument(
         {
           description:
-            "Where I've worked, what I've shipped, and the tools that survived.",
+            "Where I've worked, what I've shipped, and the tools still in daily rotation.",
           title: titled("About"),
         },
         await about()
