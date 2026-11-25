@@ -1,131 +1,45 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+
 import { site } from "@/lib/site";
 
-export const REGISTRY_NS = "@bmohak";
-
-export type PackageManager = "bun" | "npm" | "pnpm" | "yarn";
-
-export const PACKAGE_MANAGERS: PackageManager[] = [
-  "bun",
-  "pnpm",
-  "npm",
-  "yarn",
-];
+import registry from "../../registry.json";
 
 export interface RegistryProp {
-  defaultValue: string;
+  defaultValue?: string;
   name: string;
   type: string;
 }
 
-export interface RegistryItem {
-  description: string;
-  docs: string;
-  name: string;
-  props: RegistryProp[];
-  title: string;
-  usage: string;
-}
-
-const itemUrl = (name: string) => `${site.url}/r/${name}.json`;
-
-export const addCommand = (name: string, manager: PackageManager) => {
-  const url = itemUrl(name);
-
-  if (manager === "bun") {
-    return `bunx --bun shadcn@latest add ${url}`;
-  }
-
-  if (manager === "pnpm") {
-    return `pnpm dlx shadcn@latest add ${url}`;
-  }
-
-  if (manager === "yarn") {
-    return `yarn dlx shadcn@latest add ${url}`;
-  }
-
-  return `npx shadcn@latest add ${url}`;
+/**
+ * registry.json is the source of truth for names, titles and files (it is
+ * what `shadcn build` reads). This only adds what the schema has no field for.
+ */
+const PROPS: Record<string, RegistryProp[]> = {
+  "step-grid": [
+    { defaultValue: "120", name: "defaultBpm", type: "number" },
+    { name: "onHit", type: "(voice: Voice, step: number) => void" },
+  ],
 };
 
-export const namespaceCommand = (name: string, manager: PackageManager) => {
-  const spec = `${REGISTRY_NS}/${name}`;
+export const registryItem = (name: string) => {
+  const item = registry.items.find((row) => row.name === name);
 
-  if (manager === "bun") {
-    return `bunx --bun shadcn@latest add ${spec}`;
+  if (!item) {
+    throw new Error(`Missing registry item: ${name}`);
   }
 
-  if (manager === "pnpm") {
-    return `pnpm dlx shadcn@latest add ${spec}`;
-  }
-
-  if (manager === "yarn") {
-    return `yarn dlx shadcn@latest add ${spec}`;
-  }
-
-  return `npx shadcn@latest add ${spec}`;
+  return { ...item, props: PROPS[name] ?? [] };
 };
 
-export const namespaceConfig = `{
-  "registries": {
-    "${REGISTRY_NS}": "${site.url}/r/{name}.json"
-  }
-}`;
+// ponytail: URL form because @bmohak is not in ui.shadcn.com/r/registries.json.
+// Switch to `@bmohak/${name}` once the namespace is listed there.
+export const installCommand = (name: string) =>
+  `bunx --bun shadcn@latest add ${site.url}/r/${name}.json`;
 
-export const registryItems: RegistryItem[] = [
-  {
-    description: "The grid is a force, not a wall.",
-    docs: `${site.url}/crafts/snap`,
-    name: "snap",
-    props: [
-      { defaultValue: "0.38", name: "magnet", type: "number" },
-      {
-        defaultValue: "—",
-        name: "onSettle",
-        type: "(seat: { col: number; row: number }) => void",
-      },
-    ],
-    title: "Snap",
-    usage: `import { Snap } from "@/components/ui/snap"
-
-<Snap.Provider magnet={0.38} onSettle={(seat) => {}}>
-  <Snap.Field />
-</Snap.Provider>`,
-  },
-  {
-    description: "Confirmation is how long you press.",
-    docs: `${site.url}/crafts/hold`,
-    name: "hold",
-    props: [
-      { defaultValue: "720", name: "duration", type: "number" },
-      { defaultValue: '"Confirmed"', name: "confirmed", type: "ReactNode" },
-      { defaultValue: "—", name: "onConfirm", type: "() => void" },
-    ],
-    title: "Hold",
-    usage: `import { Hold } from "@/components/ui/hold"
-
-<Hold duration={720} onConfirm={() => {}}>
-  Hold to confirm
-</Hold>`,
-  },
-  {
-    description: "Sixteen steps, four voices, one sample.",
-    docs: `${site.url}/crafts/step-grid`,
-    name: "step-grid",
-    props: [
-      { defaultValue: "120", name: "defaultBpm", type: "number" },
-      {
-        defaultValue: "—",
-        name: "onHit",
-        type: "(voice: Voice, step: number) => void",
-      },
-    ],
-    title: "Step Grid",
-    usage: `import { StepGrid } from "@/components/ui/step-grid"
-
-<StepGrid.Provider defaultBpm={120} onHit={(voice) => play(voice)}>
-  <StepGrid.Pads />
-  <StepGrid.Play />
-  <StepGrid.Tempo />
-  <StepGrid.Clear />
-</StepGrid.Provider>`,
-  },
-];
+/** Demo source, read at build time so docs show code that type-checks. */
+export const demoSource = (name: string) =>
+  readFile(
+    path.join(process.cwd(), "src/registry/examples", `${name}-demo.tsx`),
+    "utf-8"
+  );

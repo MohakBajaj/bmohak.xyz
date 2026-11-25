@@ -1,41 +1,47 @@
 import type { Metadata } from "next";
 
-import { PointerLink } from "@/components/pointer-link";
-import { PageShell } from "@/components/site-shell";
-import { crafts } from "@/lib/crafts";
+import { DecodeText } from "@/components/decode-text";
+import { CraftGallery } from "@/components/registry/craft-gallery";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteNav } from "@/components/site-nav";
+import { SITE_CONTAINER } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/crafts" },
   description:
-    "Small interactive things, built to work out one idea and written up.",
+    "Small interactive things, each built to work out one idea. Also a shadcn registry.",
   title: "Crafts",
 };
 
-const CRAFTS_INTRO =
-  "Small interactive things, each built to work out one idea, each written up.";
-
 const Crafts = () => (
-  <PageShell description={CRAFTS_INTRO} title="Crafts">
-    <ul className="page-enter grid grid-cols-[minmax(0,1fr)] gap-5 text-sm [--page-enter-base:120ms]">
-      {crafts.map((craft) => (
-        <li key={craft.slug}>
-          <PointerLink href={`/crafts/${craft.slug}`}>
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-              <h2 className="font-medium text-balance group-hover:underline group-hover:underline-offset-4">
-                {craft.title}
-              </h2>
-              <span className="text-muted-foreground text-xs tabular-nums">
-                {craft.year}
-              </span>
-            </div>
-            <p className="text-muted-foreground mt-1 leading-relaxed text-pretty">
-              {craft.tagline}
-            </p>
-          </PointerLink>
-        </li>
-      ))}
-    </ul>
-  </PageShell>
+  <div className="flex min-h-dvh flex-col bg-white text-black antialiased transition-colors duration-300 dark:bg-black dark:text-white">
+    <SiteNav />
+
+    <main
+      className={cn(
+        SITE_CONTAINER,
+        "max-w-2xl flex-1 pt-[calc(6rem+env(safe-area-inset-top,0px))] pb-16"
+      )}
+      id="content"
+      tabIndex={-1}
+    >
+      <h1 className="font-heading page-enter-self text-sm font-medium tracking-tight text-balance">
+        <DecodeText text="Crafts" trigger="mount" />
+      </h1>
+      <p className="text-muted-foreground page-enter-self mt-2 text-sm leading-relaxed text-pretty [animation-delay:80ms]">
+        Small interactive things, each built to work out one idea. They&apos;re{" "}
+        <code className="font-mono text-[12px]">@bmohak</code> on the shadcn
+        registry.
+      </p>
+
+      <div className="page-enter mt-10 [--page-enter-base:120ms]">
+        <CraftGallery />
+      </div>
+    </main>
+
+    <SiteFooter />
+  </div>
 );
 
 export default Crafts;

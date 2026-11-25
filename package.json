@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "registry:build": "shadcn build",
+    "build": "shadcn build && next build",
+    "registry:validate": "shadcn registry validate ./public/r/registry.json",
     "start": "next start",
     "check": "ultracite check",
     "fix": "ultracite fix",

@@ -11,7 +11,7 @@ import { GITHUB_PROFILE_URL, getCachedOpenSource } from "@/lib/github";
 import type { OpenSource } from "@/lib/github";
 import { mohak } from "@/lib/lifelines/mohak";
 import { essaySlug, normalizePath } from "@/lib/markdown-paths";
-import { namespaceCommand, registryItems } from "@/lib/registry";
+import { demoSource, installCommand, registryItem } from "@/lib/registry";
 import { site } from "@/lib/site";
 import { isExternal, postsByYear } from "@/lib/writing";
 
@@ -298,36 +298,33 @@ const readEssay = async (kind: "writing" | "crafts", slug: string) => {
   }
 };
 
-const craftNotes = (slug: string) => {
-  const item = registryItems.find((row) => row.name === slug);
-  const command = ["```bash", namespaceCommand(slug, "bun"), "```"].join("\n");
-  if (!item) {
-    return `## Install\n\n${command}`;
-  }
-
-  const props = item.props
+const craftNotes = async (slug: string) => {
+  const { props } = registryItem(slug);
+  const usage = await demoSource(slug);
+  const list = props
     .map((prop) => {
-      const meta =
-        prop.defaultValue === "—"
-          ? `\`${prop.type}\``
-          : `\`${prop.type}\` = \`${prop.defaultValue}\``;
-      return `- \`${prop.name}\` — ${meta}`;
+      const meta = prop.defaultValue
+        ? `\`${prop.type}\` = \`${prop.defaultValue}\``
+        : `\`${prop.type}\``;
+      return `- \`${prop.name}\`: ${meta}`;
     })
     .join("\n");
 
   return [
     "## Install",
     "",
-    command,
+    "```bash",
+    installCommand(slug),
+    "```",
     "",
     "## Props",
     "",
-    props,
+    list,
     "",
     "## Usage",
     "",
     "```tsx",
-    item.usage,
+    usage.trim(),
     "```",
   ].join("\n");
 };
@@ -368,7 +365,7 @@ const craftMarkdown = async (pathname: string) => {
       description: craft?.tagline ?? "",
       title: titled(craft?.title ?? slug),
     },
-    `${mdxBody(source)}\n\n${craftNotes(slug)}`
+    `${mdxBody(source)}\n\n${await craftNotes(slug)}`
   );
 };
 

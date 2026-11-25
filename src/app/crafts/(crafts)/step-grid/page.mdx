@@ -1,4 +1,5 @@
-import { StepGrid } from "@/components/crafts/step-grid";
+import { CraftStage } from "@/components/registry/craft";
+import { StepGridLive } from "@/components/registry/step-grid-stage";
 
 export const metadata = {
   alternates: { canonical: "/crafts/step-grid" },
@@ -10,7 +11,9 @@ export const metadata = {
 
 Sixteen steps, four voices, one sample.
 
-<StepGrid />
+<CraftStage name="step-grid">
+  <StepGridLive />
+</CraftStage>
 
 ## The idea
 
@@ -31,3 +34,4 @@ This is a `setInterval`. At 90–160 BPM a sixteenth is 94–167ms, and the drif
 - The grid lives in a ref as well as state, so changing a step does not tear down and rebuild the interval mid-bar.
 - The playhead is derived from `playing`, not reset when you stop. State that is only ever a function of other state should not be state.
 - Every pad is a real `button` with `aria-pressed`, so the pattern is reachable and readable without a pointer.
+- Sound is not a prop. Pass `onHit` and play whatever you want. The grid does not know about samples.

@@ -11,6 +11,7 @@ import {
 } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 
+import { crafts } from "@/lib/crafts";
 import { site } from "@/lib/site";
 import { cue } from "@/lib/ui-sound";
 import { cn } from "@/lib/utils";
@@ -27,6 +28,12 @@ const ITEMS: Item[] = [
   { hint: "/", href: "/", id: "home", label: "Home" },
   { hint: "/about", href: "/about", id: "about", label: "About" },
   { hint: "/crafts", href: "/crafts", id: "crafts", label: "Crafts" },
+  ...crafts.map((craft) => ({
+    hint: `/crafts/${craft.slug}`,
+    href: `/crafts/${craft.slug}`,
+    id: `craft-${craft.slug}`,
+    label: craft.title,
+  })),
   { hint: "/writing", href: "/writing", id: "writing", label: "Writing" },
   {
     external: true,

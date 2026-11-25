@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "bmohak",
+  "homepage": "https://bmohak.xyz/crafts",
+  "items": [
+    {
+      "name": "step-grid",
+      "type": "registry:ui",
+      "title": "Step Grid",
+      "description": "Sixteen steps, four voices, one sample.",
+      "docs": "https://bmohak.xyz/crafts/step-grid",
+      "files": [
+        {
+          "path": "src/registry/ui/step-grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}
