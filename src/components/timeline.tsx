@@ -2,7 +2,7 @@
 
 import { Lifeline } from "@/components/lifeline";
 import { registerCompanyIcons } from "@/components/lifeline/company-icon";
-import { work } from "@/lib/about";
+import { LifelineStatic } from "@/components/lifeline/lifeline-static";
 import { mohak } from "@/lib/lifelines/mohak";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -44,10 +44,19 @@ export const Timeline = () => (
   <Lifeline
     birthYear={mohak.birthYear}
     fallback={
-      <div className="text-muted-foreground mx-auto max-w-xl space-y-2 px-6 pt-5 text-sm leading-relaxed text-pretty">
-        <p>{site.intro}</p>
-        <p>{work[0].highlights[0]}</p>
-      </div>
+      /*
+        <noscript>, so only readers without JavaScript get it. Sent to
+        everyone, it flashed in the middle of the page while scripts loaded
+        and then got swapped out from under the intro. Crawlers and agents
+        that skip scripts parse it as ordinary HTML.
+      */
+      <noscript>
+        <LifelineStatic
+          birthYear={mohak.birthYear}
+          lead={site.intro}
+          markers={mohak.markers}
+        />
+      </noscript>
     }
     markers={mohak.markers}
     title={mohak.name}
