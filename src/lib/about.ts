@@ -155,9 +155,8 @@ export const achievements = [
  * this repo runs on. Marks with no `icon` had no usable favicon, or flattened
  * to a solid lump under scripts/mono-favicons — the initial reads better.
  *
- * TODO(mohak): still yours to prune. Rust (seven repos, all 2022) and the
- * Java/C/Dart/Flutter half of the resume are deliberately absent — learning
- * and coursework, not daily drivers. Add them back if that is wrong.
+ * Rust is back since Jot 2.0 moved onto it. The Java/C/Dart/Flutter half
+ * of the resume stays out: coursework, not daily drivers.
  */
 export const stack: ToolGroup[] = [
   {
@@ -229,10 +228,15 @@ export const stack: ToolGroup[] = [
         note: "v4. The design tokens live in one file.",
       },
       {
+        href: "https://ui-sdk.dev",
+        name: "ui-sdk",
+        note: "The primitives under this site. Popups render in place, no portal to chase.",
+      },
+      {
         href: "https://base-ui.com",
         icon: "/favicons/mono/baseui.png",
         name: "Base UI",
-        note: "The primitives under shadcn here, and under Slip.",
+        note: "The primitives under shadcn, and under Slip.",
       },
       {
         href: "https://ui.shadcn.com",
@@ -255,13 +259,29 @@ export const stack: ToolGroup[] = [
         href: "https://github.com/charmbracelet/wish",
         icon: "/favicons/mono/charm.png",
         name: "Wish",
-        note: "SSH as an app server. It is what makes ssh bmohak.xyz answer.",
+        note: "SSH as an app server. mohak.tui runs on it, behind tui.bmohak.xyz.",
+      },
+      {
+        href: "https://www.rust-lang.org",
+        icon: "/favicons/mono/rust.png",
+        name: "Rust",
+        note: "Jot 2.0. Rewrote it off Electron: 675 MB down to 91 MB, same vault.",
+      },
+      {
+        href: "https://github.com/anomalyco/rune",
+        name: "Rune",
+        note: "The native UI framework Jot 2.0 is built on.",
+      },
+      {
+        href: "https://www.raycast.com",
+        name: "Raycast",
+        note: "Jot has an extension there, so capture is one keystroke from anywhere.",
       },
       {
         href: "https://www.electronjs.org",
         icon: "/favicons/mono/electron.png",
         name: "Electron",
-        note: "Slip ships on it. electron-vite for the build, electron-builder for the rest.",
+        note: "Where Slip started, and why Jot left. Still the fastest way to a first build.",
       },
       {
         href: "https://ziglang.org",
