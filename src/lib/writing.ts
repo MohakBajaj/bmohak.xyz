@@ -24,6 +24,16 @@ export interface Post {
  */
 export const posts: Post[] = [
   {
+    date: "2026-11-25",
+    description:
+      '92% of the "AI slop" EXT4 pull was tests. The real Linux story this year: finding deep bugs got cheap, and reviewing the fixes didn\'t.',
+    href: "https://medium.com/@mohakbajaj/linus-didnt-ban-ai-from-the-kernel-he-banned-41-197-lines-in-rc5-f258f2b31adf",
+    source: "Medium",
+    title:
+      "Linus didn't ban AI from the kernel. He banned 41,197 lines in -rc5.",
+    year: 2026,
+  },
+  {
     date: "2026-08-23",
     description:
       "Why this site is a timeline instead of a hero section, and what it is actually built out of.",
