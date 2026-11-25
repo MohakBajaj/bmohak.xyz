@@ -1,0 +1,32 @@
+package.json
+  s_2f5bea4674d3d5::t_94e2c0940a26a5 23-24
+src/app/globals.css
+  s_2f5bea4674d3d5::t_2b190d316d9e40 1-2
+src/components/ui/tooltip.tsx
+  s_2f5bea4674d3d5::t_6d8770706377ef 3,5-7,9-11,15-17,43-48,55
+  s_2f5bea4674d3d5::t_1737142b1c7347 4,8,20-22,24-28,33,35-40,42,49-54,59
+  s_2f5bea4674d3d5::t_23512e5a3f5fa8 32,34
+src/components/github-contributions.tsx
+  s_2f5bea4674d3d5::t_f611fc0e9522a4 4,17,24-26,37,52-70,74-80
+  s_2f5bea4674d3d5::t_5de40b70fe6102 81
+bun.lock
+  s_2f5bea4674d3d5::t_21214a84eb9579 14-15,410-413
+src/app/layout.tsx
+  s_2f5bea4674d3d5::t_bd93d0be228d6c 104,111
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "db9f9cd72c14a7c9090976575d56b5d8144791ee",
+  "prompts": {},
+  "sessions": {
+    "s_2f5bea4674d3d5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bbf6ed40-8744-4d70-8a1f-c5143b7c0a41",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
