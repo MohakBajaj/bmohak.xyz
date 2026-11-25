@@ -1,0 +1,19 @@
+AGENTS.md
+  s_02bfb2c75b0825::t_7b09184e0931d9 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "31b9f9758c81bc2dd4b49051178d005881311ee3",
+  "prompts": {},
+  "sessions": {
+    "s_02bfb2c75b0825": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3833d727-cc52-474f-84b5-5182fadbb3ff",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
