@@ -207,6 +207,31 @@ export const mohak = defineLifeline({
             ": local-first capture inboxes for AI-assisted work. Select text, press a chord, own the markdown."
           ),
         ],
+        [
+          t("Slip grew up into "),
+          a("Jot", "https://sayjot.xyz"),
+          t(
+            ", a Mac app: tap Shift twice and the selection is a markdown file in a folder you own. Launched in November. Two people paid before I posted a word about it."
+          ),
+        ],
+        [
+          t(
+            "Jot 2.0: rewrote it from Electron to Rust, on Rune. 675 MB down to 91 MB, same vault. Shipped a "
+          ),
+          a(
+            "Raycast extension",
+            "https://github.com/raycast/extensions/pull/33507"
+          ),
+          t(" and an "),
+          a("MCP server", "https://github.com/MohakBajaj/jot-mcp"),
+          t(" with no delete tool, on purpose."),
+        ],
+        "Mentored and judged EQUINOX, a 36-hour hackathon at Zenith School of AI run with Google Developer Groups. Around 50 teams, building through the night.",
+        [
+          t("Crossed 1,000 followers on "),
+          a("X", "https://x.com/MohakBajaj5"),
+          t(", mostly from posting hot takes about coding agents."),
+        ],
         "Migrated build tooling in public with the receipts attached, and wrote songs for developers who ship at 3am.",
       ],
       id: "shipping",
