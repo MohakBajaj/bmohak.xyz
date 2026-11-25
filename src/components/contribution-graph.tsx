@@ -385,7 +385,7 @@ export const ContributionGraphCalendar = ({
         viewBox={`0 0 ${width} ${height}`}
         width={width}
       >
-        <title>{title}</title>
+        {title && <title>{title}</title>}
         {!hideMonthLabels && (
           <g
             data-slot="month-labels"

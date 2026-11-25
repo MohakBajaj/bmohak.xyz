@@ -127,7 +127,9 @@
     }
     to {
       opacity: 1;
-      transform: translate3d(0, 0, 0);
+      /* none, not translate3d(0,0,0): the fill stays on, and any transform
+         would make this a containing block for fixed popups inside it. */
+      transform: none;
     }
   }
   @keyframes contribution-in {
