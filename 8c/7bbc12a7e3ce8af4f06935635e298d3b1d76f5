@@ -1,0 +1,46 @@
+src/components/lifeline/lifeline-utils.ts
+  s_02bfb2c75b0825::t_d99fdc99d87dae 26-40
+src/lib/lifeline-data.ts
+  s_02bfb2c75b0825::t_a33ae7a253cdc7 134-135
+  s_02bfb2c75b0825::t_0f95cdb3bb2d31 137
+  s_02bfb2c75b0825::t_6589897002cf69 9-18,77-98,115-116,119,127-133,136,138-140
+src/lib/lifelines/mohak.ts
+  s_02bfb2c75b0825::t_2ed756bb7e1050 183-270
+src/components/lifeline/lifeline-marker.tsx
+  s_02bfb2c75b0825::t_d99fdc99d87dae 28-29,44,109
+src/components/lifeline/lifeline-vertical.tsx
+  s_02bfb2c75b0825::t_32dd66f846bd16 31-35,466-491
+  s_02bfb2c75b0825::t_234124b2160a3e 544
+  s_02bfb2c75b0825::t_d99fdc99d87dae 183,194,257,533-543,545-576
+  s_02bfb2c75b0825::t_64c326ab9a0f4c 492
+src/lib/page-markdown.ts
+  s_02bfb2c75b0825::t_6589897002cf69 97
+  s_02bfb2c75b0825::t_1a0f60369880be 12
+src/components/lifeline/use-lifeline-scroll.ts
+  s_02bfb2c75b0825::t_a3405b5f14d6ae 262-277
+src/components/feedback.tsx
+  s_02bfb2c75b0825::t_381059866d726a 1-34
+src/components/lifeline/lifeline-desktop.tsx
+  s_02bfb2c75b0825::t_2ed756bb7e1050 193-195
+  s_02bfb2c75b0825::t_6589897002cf69 192
+  s_02bfb2c75b0825::t_a3405b5f14d6ae 191,200-203,210-214,217,238
+  s_02bfb2c75b0825::t_a06d84b85e396b 16,48
+  s_02bfb2c75b0825::t_ac342d0c0344a3 204-209,215-216,218-237
+  s_02bfb2c75b0825::t_c91200f16b7529 49,239
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8c7bbc12a7e3ce8af4f06935635e298d3b1d76f5",
+  "prompts": {},
+  "sessions": {
+    "s_02bfb2c75b0825": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3833d727-cc52-474f-84b5-5182fadbb3ff",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
