@@ -3,11 +3,10 @@
 import { useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 
-import { cue } from "@/lib/ui-sound";
-
 /**
- * The pointer writes. A click on empty ground writes harder. The layer
- * never takes a hit: it only watches, so links and tabs keep working.
+ * The pointer writes. A click on empty ground writes harder, silently:
+ * sound is for things that do something, and empty ground does nothing.
+ * The layer never takes a hit: it only watches, so links and tabs keep working.
  */
 const GLYPHS = "01#*+=/\\░";
 const POOL = 18;
@@ -104,7 +103,6 @@ export const Playfield = () => {
           (Math.random() - 0.5) * 48
         );
       }
-      void cue("tick");
     };
 
     window.addEventListener("pointermove", onMove, { passive: true });
