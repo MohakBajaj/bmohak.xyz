@@ -1,0 +1,23 @@
+src/components/lifeline/lifeline-static.tsx
+  s_02bfb2c75b0825::t_fc41e985b757ab 87-90
+  s_02bfb2c75b0825::t_5bdd1fd6c99781 92
+  s_02bfb2c75b0825::t_079ddfe56a09fa 1-86,91,93-192
+src/components/timeline.tsx
+  s_02bfb2c75b0825::t_fc41e985b757ab 5,47-59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6251c38d9c7faef507da68f26d8babfa114062a7",
+  "prompts": {},
+  "sessions": {
+    "s_02bfb2c75b0825": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3833d727-cc52-474f-84b5-5182fadbb3ff",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
