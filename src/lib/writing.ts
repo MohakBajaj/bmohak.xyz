@@ -24,6 +24,15 @@ export interface Post {
  */
 export const posts: Post[] = [
   {
+    date: "2026-11-26",
+    description:
+      "The 20 Rust ideas you need to review AI-written Rust, and what to catch when the agent gets sloppy.",
+    href: "https://medium.com/@mohakbajaj/20-rust-concepts-you-need-before-merging-claudes-code-4fbd5f53daf8",
+    source: "Medium",
+    title: "20 Rust Concepts You Need Before Merging Claude's Code",
+    year: 2026,
+  },
+  {
     date: "2026-11-25",
     description:
       '92% of the "AI slop" EXT4 pull was tests. The real Linux story this year: finding deep bugs got cheap, and reviewing the fixes didn\'t.',
