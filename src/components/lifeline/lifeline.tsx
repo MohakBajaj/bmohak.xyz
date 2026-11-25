@@ -33,8 +33,13 @@ export function Lifeline(props: LifelineProps) {
     return () => query.removeEventListener("change", update);
   }, []);
 
+  /*
+    The server can't know the viewport, so it sends the fallback, visibly.
+    Clients without JS (agents, readers) keep it; with JS it is replaced
+    before the first post-hydration paint.
+  */
   if (isMobile === null) {
-    return <div className="invisible h-full" aria-hidden="true" />;
+    return <div className="h-full">{props.fallback}</div>;
   }
 
   if (isMobile) {

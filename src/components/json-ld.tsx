@@ -14,7 +14,7 @@ const person = {
     addressRegion: "Delhi NCR",
   },
   alumniOf: "University of Petroleum and Energy Studies",
-  description: site.description,
+  description: site.intro,
   jobTitle: "Full Stack Architect",
   name: site.name,
   sameAs: [...site.socials.map((s) => s.href), site.resume],

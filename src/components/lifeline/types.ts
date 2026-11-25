@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import type { CompanyIconId } from "./company-icon";
 
 export interface LifelineMentor {
@@ -108,4 +110,6 @@ export interface LifelineProps {
   className?: string;
   title?: string;
   mode?: LifelineMode;
+  /** Server-rendered in place of the timeline until JS picks a layout. */
+  fallback?: ReactNode;
 }
