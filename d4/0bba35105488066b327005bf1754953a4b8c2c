@@ -1,0 +1,14 @@
+src/lib/writing.ts
+  h_465c0699bc2db3 26-35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d40bba35105488066b327005bf1754953a4b8c2c",
+  "prompts": {},
+  "humans": {
+    "h_465c0699bc2db3": {
+      "author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
