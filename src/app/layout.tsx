@@ -15,7 +15,6 @@ import { JsonLd } from "@/components/json-ld";
 import { Playfield } from "@/components/playfield";
 import { RouteCue } from "@/components/route-cue";
 import { ThemeProvider } from "@/components/theme-provider";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -102,16 +101,14 @@ const RootLayout = ({ children }: LayoutProps<"/">) => (
         disableTransitionOnChange
         enableSystem
       >
-        <TooltipProvider>
-          {/*
+        {/*
             `default="none"` so this wrapper does not get a view-transition-
             name. A name here snapshots the whole page box — thousands of
             pixels tall on About — and the group morph from that box (scrolled
             to the footer) to a short page is the footer flying. Nav and
             footer carry their own names; the root viewport just fades.
           */}
-          <ViewTransition default="none">{children}</ViewTransition>
-        </TooltipProvider>
+        <ViewTransition default="none">{children}</ViewTransition>
         <Haptics />
         <RouteCue />
         <Playfield />
