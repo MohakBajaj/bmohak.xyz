@@ -1,7 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
-import { use, useState, type CSSProperties } from "react";
+import { use, type CSSProperties } from "react";
 
 import type { Activity } from "@/components/contribution-graph";
 import {
@@ -14,7 +14,6 @@ import {
 } from "@/components/contribution-graph";
 import { Spinner } from "@/components/ui/spinner";
 import {
-  createTooltipController,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
@@ -23,6 +22,37 @@ import { cn } from "@/lib/utils";
 
 const label = (activity: Activity) =>
   `${activity.count} contribution${activity.count > 1 ? "s" : ""} on ${format(new Date(activity.date), "dd.MM.yyyy")}`;
+
+/*
+  Anchor each tooltip to a box computed from the <svg>'s own CSS box plus the
+  cell's x/y attributes, not to the <g> trigger. Firefox measures an SVG <g>
+  inside the sideways-scrolled calendar off by the scroll distance, so the
+  tooltip landed hundreds of pixels from its cell. The <svg> box is plain CSS
+  layout and every engine agrees on it. viewBox is 1:1 with width/height, so
+  attribute units are pixels.
+*/
+const cellAnchor = (date: string) => {
+  const cell = () =>
+    document.querySelector<SVGRectElement>(`rect[data-date="${date}"]`);
+  return {
+    get contextElement() {
+      return cell()?.ownerSVGElement ?? undefined;
+    },
+    getBoundingClientRect() {
+      const rect = cell();
+      const svg = rect?.ownerSVGElement?.getBoundingClientRect();
+      if (!rect || !svg) {
+        return new DOMRect();
+      }
+      return new DOMRect(
+        svg.left + rect.x.baseVal.value,
+        svg.top + rect.y.baseVal.value,
+        rect.width.baseVal.value,
+        rect.height.baseVal.value
+      );
+    },
+  };
+};
 
 export function GitHubContributions({
   contributions,
@@ -34,7 +64,6 @@ export function GitHubContributions({
   className?: string;
 }) {
   const data = use(contributions);
-  const [tooltip] = useState(() => createTooltipController<Activity>());
 
   return (
     <ContributionGraph
@@ -50,35 +79,30 @@ export function GitHubContributions({
         title=""
       >
         {({ activity, dayIndex, weekIndex }) => (
-          <TooltipTrigger
-            aria-label={label(activity)}
-            controller={tooltip}
-            payload={activity}
-            render={<g />}
-          >
-            <ContributionGraphBlock
-              activity={activity}
-              className="contribution-in"
-              dayIndex={dayIndex}
-              style={
-                {
-                  "--d": dayIndex,
-                  "--w": weekIndex,
-                } as CSSProperties
-              }
-              weekIndex={weekIndex}
-            />
-          </TooltipTrigger>
+          <Tooltip>
+            <TooltipTrigger aria-label={label(activity)} render={<g />}>
+              <ContributionGraphBlock
+                activity={activity}
+                className="contribution-in"
+                dayIndex={dayIndex}
+                style={
+                  {
+                    "--d": dayIndex,
+                    "--w": weekIndex,
+                  } as CSSProperties
+                }
+                weekIndex={weekIndex}
+              />
+            </TooltipTrigger>
+            <TooltipContent
+              anchor={cellAnchor(activity.date)}
+              className="font-sans"
+            >
+              <p>{label(activity)}</p>
+            </TooltipContent>
+          </Tooltip>
         )}
       </ContributionGraphCalendar>
-
-      {/* ponytail: one shared tooltip for every block. It must sit outside
-          the <svg>, since ui-sdk renders popups in place, not in a portal. */}
-      <Tooltip controller={tooltip}>
-        <TooltipContent<Activity> className="font-sans">
-          {({ payload }) => payload && <p>{label(payload)}</p>}
-        </TooltipContent>
-      </Tooltip>
 
       <ContributionGraphFooter className="px-2">
         <ContributionGraphTotalCount>

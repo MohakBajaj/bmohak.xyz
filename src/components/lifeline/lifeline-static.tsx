@@ -134,7 +134,7 @@ export const LifelineStatic = ({
                     // The newest year carries the same pulse as the live rail.
                     <span
                       aria-hidden="true"
-                      className="lifeline-now-node-vertical text-zinc-500 dark:text-zinc-400"
+                      className="lifeline-now-node-vertical text-emerald-500"
                     >
                       <span className="lifeline-now-core" />
                       <span className="lifeline-now-ring" />

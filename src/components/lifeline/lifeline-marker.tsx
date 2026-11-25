@@ -74,14 +74,14 @@ export const LifelineMarkerColumn = forwardRef<
           <>
             <span
               aria-hidden="true"
-              className="lifeline-now-node absolute top-[var(--lifeline-rail)] left-0 z-10 text-zinc-500 dark:text-zinc-400"
+              className="lifeline-now-node absolute top-[var(--lifeline-rail)] left-0 z-10 text-emerald-500"
             >
               <span className="lifeline-now-core" />
               <span className="lifeline-now-ring" />
             </span>
             <span
               aria-hidden="true"
-              className="lifeline-now-ahead text-zinc-400 dark:text-zinc-500"
+              className="lifeline-now-ahead text-emerald-500"
             />
           </>
         ) : (

@@ -1,5 +1,6 @@
 "use client";
 
+import { Favicon } from "@/components/favicon";
 import { Lifeline } from "@/components/lifeline";
 import { registerCompanyIcons } from "@/components/lifeline/company-icon";
 import { LifelineStatic } from "@/components/lifeline/lifeline-static";
@@ -7,22 +8,13 @@ import { mohak } from "@/lib/lifelines/mohak";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-/**
- * A company mark, drawn the same way the About page draws them: a mask filled
- * with currentColor, so it inherits the rail's own colour and stays on the
- * site's two-tone palette instead of dragging a logo's brand colour onto it.
- */
+/** A company mark in its own colour, the same way the About page draws it. */
 const mark = (file: string) => {
   const Mark = ({ className }: { className?: string }) => (
-    <span
-      aria-hidden="true"
-      className={cn("size-3.5 shrink-0 bg-current", className)}
-      style={{
-        maskImage: `url(/favicons/mono/${file}.png)`,
-        maskPosition: "center",
-        maskRepeat: "no-repeat",
-        maskSize: "contain",
-      }}
+    <Favicon
+      className={cn("size-3.5", className)}
+      icon={`/favicons/${file}.png`}
+      label={file}
     />
   );
   return { icon: Mark };
