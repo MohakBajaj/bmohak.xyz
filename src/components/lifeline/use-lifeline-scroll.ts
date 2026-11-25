@@ -259,6 +259,22 @@ export function useLifelineScroll(
         labels.classList.remove("is-pinned");
       }
 
+      // Year labels that pin while their months pass: hold each at the
+      // shield's right edge, but never past the end of its own months.
+      const trackLeft = snapToDevicePixel(startInset.current - translate);
+      for (const year of trackRef.current?.querySelectorAll<HTMLElement>(
+        "[data-lifeline-sticky-year]"
+      ) ?? []) {
+        const start = Number(year.dataset.start);
+        const room = Number(year.dataset.end) - start - year.offsetWidth;
+        const shift = clamp(
+          LIFELINE_STICKY_LEFT - trackLeft - start,
+          0,
+          Math.max(0, room)
+        );
+        year.style.transform = shift ? `translate3d(${shift}px, 0, 0)` : "";
+      }
+
       return { isSticky, labelLeft };
     },
     [getLabelStageLeft]

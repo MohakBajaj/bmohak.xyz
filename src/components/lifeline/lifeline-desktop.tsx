@@ -13,7 +13,7 @@ import {
 } from "./lifeline-labels";
 import { LifelineMarkerColumn } from "./lifeline-marker";
 import { LifelineFloatingPhotos } from "./lifeline-photos";
-import { getMarkerWidth } from "./lifeline-utils";
+import { getLifelineYearGroups, getMarkerWidth } from "./lifeline-utils";
 import type { LifelineEventImage, LifelineProps } from "./types";
 import { useLifelineIntro } from "./use-lifeline-intro";
 import { useLifelineScroll } from "./use-lifeline-scroll";
@@ -44,6 +44,8 @@ export function LifelineDesktop({
     }
     return result;
   }, [widths]);
+
+  const yearGroups = useMemo(() => getLifelineYearGroups(markers), [markers]);
 
   const hoverImages = useMemo(() => {
     const images: LifelineEventImage[] = [];
@@ -186,10 +188,54 @@ export function LifelineDesktop({
                     animateIntro={showIntro}
                     introDelay={intro.getMarkerDelay(index)}
                     introDuration={intro.getMarkerFadeDuration(index)}
-                    isNow={marker.year === LIFELINE_CURRENT_YEAR}
+                    hideLabel={yearGroups.some(([start]) => start === index)}
+                    isNow={
+                      index === markers.length - 1 &&
+                      Math.floor(marker.year) === LIFELINE_CURRENT_YEAR
+                    }
                   />
                 ))}
               </div>
+
+              {/* A year with months keeps its label pinned beside the Age/Years
+                column while its months scroll past. useLifelineScroll moves
+                these; data-start/data-end bound the slide in track px. */}
+              {yearGroups.map(([start, end]) => (
+                // Two layers on purpose. The outer one is positioned by
+                // useLifelineScroll's inline transform; the inner one runs
+                // the intro fade-and-rise. The intro keyframes animate
+                // transform with fill: forwards, so on one element they would
+                // override the pin until the intro ended.
+                <div
+                  key={markers[start].id}
+                  aria-hidden="true"
+                  data-lifeline-sticky-year=""
+                  data-start={offsets[start]}
+                  data-end={offsets[end] + widths[end]}
+                  className="absolute top-9 z-10 will-change-transform"
+                  style={{ left: offsets[start] }}
+                >
+                  <p
+                    className={cn(
+                      "h-5 bg-white pr-4 text-[15px] leading-5 font-medium whitespace-nowrap tabular-nums transition-colors duration-300 dark:bg-black",
+                      Math.floor(markers[end].year) === LIFELINE_CURRENT_YEAR
+                        ? "text-zinc-800 dark:text-zinc-200"
+                        : "text-zinc-500 dark:text-zinc-600",
+                      showIntro && "lifeline-marker-intro"
+                    )}
+                    style={
+                      showIntro
+                        ? ({
+                            animationDelay: `${intro.getMarkerDelay(start)}ms`,
+                            "--lifeline-marker-fade-ms": `${intro.getMarkerFadeDuration(start)}ms`,
+                          } as CSSProperties)
+                        : undefined
+                    }
+                  >
+                    {markers[start].label ?? markers[start].year}
+                  </p>
+                </div>
+              ))}
 
               <LifelineFloatingPhotos
                 markers={markers}

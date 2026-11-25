@@ -6,7 +6,16 @@ import type {
 
 export const LIFELINE_CURRENT_YEAR = 2026;
 
-export type LifelineMilestone = Omit<LifelineMarker, "year">;
+type LifelineMonthMilestone = Omit<LifelineMarker, "year" | "age" | "label">;
+
+export type LifelineMilestone = Omit<LifelineMarker, "year"> & {
+  /**
+   * Month-level markers (1 = Jan) for a year with too much in it. Each
+   * becomes its own column right after the year's column, labelled with
+   * the month. The year column keeps whatever doesn't belong to a month.
+   */
+  months?: Record<number, LifelineMonthMilestone>;
+};
 export type LifelineMilestones = Record<number, LifelineMilestone>;
 
 export interface LifelineBirthday {
@@ -65,6 +74,28 @@ export function localizeLifelineMarkers(
   });
 }
 
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+/** Marker label for a month marker in a context that has no year column. */
+export function getLifelineMarkerHeading(marker: LifelineMarker) {
+  return Number.isInteger(marker.year)
+    ? `${marker.label ?? marker.year}`
+    : `${marker.label} ${Math.floor(marker.year)}`;
+}
+
 export function defineLifeline(input: DefineLifelineInput): LifelineRecord {
   const { milestones, ...record } = input;
   const lastYear = input.endYear ?? LIFELINE_CURRENT_YEAR;
@@ -81,9 +112,11 @@ export function defineLifeline(input: DefineLifelineInput): LifelineRecord {
           today.getDate() < input.birthday.day));
     const age = birthdayPending ? year - input.birthYear - 1 : undefined;
 
+    const { months, ...yearMilestone } = milestone ?? {};
+
     markers.push(
       milestone
-        ? { year, ...(age !== undefined && { age }), ...milestone }
+        ? { year, ...(age !== undefined && { age }), ...yearMilestone }
         : {
             id: `year-${year}`,
             year,
@@ -91,6 +124,20 @@ export function defineLifeline(input: DefineLifelineInput): LifelineRecord {
             ...(age !== undefined && { age }),
           }
     );
+
+    for (const [key, month] of Object.entries(months ?? {}).toSorted(
+      ([a], [b]) => Number(a) - Number(b)
+    )) {
+      const m = Number(key);
+      markers.push({
+        ...month,
+        // The year column already shows the age; repeating it per month is noise.
+        age: "",
+        label: MONTHS[m - 1],
+        // ponytail: m / 13 keeps every month strictly between this year and the next
+        year: year + m / 13,
+      });
+    }
   }
 
   return { ...record, markers };

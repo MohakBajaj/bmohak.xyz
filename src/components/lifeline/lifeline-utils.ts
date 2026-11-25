@@ -23,6 +23,21 @@ export function hasMarkerContent(marker: LifelineMarker) {
   );
 }
 
+/**
+ * Index ranges [start, end] of a year marker plus the month markers that
+ * follow it. Month markers sit at fractional years, right after their year.
+ */
+export function getLifelineYearGroups(markers: LifelineMarker[]) {
+  const groups: [number, number][] = [];
+  markers.forEach((marker, index) => {
+    if (Number.isInteger(marker.year)) return;
+    const last = groups.at(-1);
+    if (last && last[1] === index - 1) last[1] = index;
+    else groups.push([index - 1, index]);
+  });
+  return groups;
+}
+
 export function hasMarkerPeople(marker: LifelineMarker) {
   return (marker.mentors?.length ?? 0) > 0 || (marker.met?.length ?? 0) > 0;
 }

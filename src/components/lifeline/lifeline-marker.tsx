@@ -25,6 +25,8 @@ interface LifelineMarkerColumnProps {
   introDuration?: number;
   /** Last open year — the rail is still being drawn. */
   isNow?: boolean;
+  /** A sticky copy of the label is drawn over this one. */
+  hideLabel?: boolean;
 }
 
 export const LifelineMarkerColumn = forwardRef<
@@ -39,6 +41,7 @@ export const LifelineMarkerColumn = forwardRef<
     introDelay = 0,
     introDuration = 420,
     isNow = false,
+    hideLabel = false,
   },
   ref
 ) {
@@ -103,6 +106,7 @@ export const LifelineMarkerColumn = forwardRef<
           <p
             className={cn(
               "mb-6 h-5 text-[15px] leading-5 font-medium whitespace-nowrap tabular-nums transition-colors duration-300 group-hover:text-black dark:group-hover:text-white",
+              hideLabel && "invisible",
               isNow
                 ? "text-zinc-800 dark:text-zinc-200"
                 : "text-zinc-500 dark:text-zinc-600"

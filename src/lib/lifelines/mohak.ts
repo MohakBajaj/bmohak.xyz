@@ -177,64 +177,97 @@ export const mohak = defineLifeline({
     2026: {
       companies: [{ id: "cambrianedge", name: "CambrianEdge.ai" }],
       events: [
-        [
-          t("Built "),
-          a("mohak.tui", "https://github.com/MohakBajaj/mohak.tui"),
-          t(
-            " in Go, on Bubble Tea and Wish, with an AI chat behind a command interface. It runs in Termux on my phone and proxies out to tui.bmohak.xyz, so the portfolio answers on port 22: ssh bmohak.xyz."
-          ),
-        ],
-        [
-          t("First talk ever: "),
-          a(
-            "Microsoft Build //localhost",
-            "https://github.com/MohakBajaj/build-2026-cli-live"
-          ),
-          t(", Gurugram. From CLI to PR, live, no slides safety net."),
-        ],
-        [
-          t("Cursor India Roadshow, and "),
-          a("SyncUp DJ", "https://github.com/MohakBajaj/syncup-djs"),
-          t(
-            ", a multiplayer live-coding jam booth on shared Strudel patterns, at the Cursor buildathon."
-          ),
-        ],
-        [
-          a("Slip", "https://github.com/MohakBajaj/slip"),
-          t(" and "),
-          a("Copper", "https://github.com/MohakBajaj/copper"),
-          t(
-            ": local-first capture inboxes for AI-assisted work. Select text, press a chord, own the markdown."
-          ),
-        ],
-        [
-          t("Slip grew up into "),
-          a("Jot", "https://sayjot.xyz"),
-          t(
-            ", a Mac app: tap Shift twice and the selection is a markdown file in a folder you own. Launched in November. Two people paid before I posted a word about it."
-          ),
-        ],
-        [
-          t(
-            "Jot 2.0: rewrote it from Electron to Rust, on Rune. 675 MB down to 91 MB, same vault. Shipped a "
-          ),
-          a(
-            "Raycast extension",
-            "https://github.com/raycast/extensions/pull/33507"
-          ),
-          t(" and an "),
-          a("MCP server", "https://github.com/MohakBajaj/jot-mcp"),
-          t(" with no delete tool, on purpose."),
-        ],
-        "Mentored and judged EQUINOX, a 36-hour hackathon at Zenith School of AI run with Google Developer Groups. Around 50 teams, building through the night.",
-        [
-          t("Crossed 1,000 followers on "),
-          a("X", "https://x.com/MohakBajaj5"),
-          t(", mostly from posting hot takes about coding agents."),
-        ],
         "Migrated build tooling in public with the receipts attached, and wrote songs for developers who ship at 3am.",
       ],
       id: "shipping",
+      // Dates come from repo creation dates and post dates on X and LinkedIn.
+      months: {
+        10: {
+          events: [
+            "Mentored and judged EQUINOX, a 36-hour hackathon at Zenith School of AI run with Google Developer Groups. Around 50 teams, building through the night.",
+          ],
+          id: "equinox",
+        },
+        11: {
+          events: [
+            [
+              t("Slip grew up into "),
+              a("Jot", "https://sayjot.xyz"),
+              t(
+                ", a Mac app: tap Shift twice and the selection is a markdown file in a folder you own. Two people paid before I posted a word about it."
+              ),
+            ],
+            [
+              t(
+                "Jot 2.0: rewrote it from Electron to Rust, on Rune. 675 MB down to 91 MB, same vault. Shipped a "
+              ),
+              a(
+                "Raycast extension",
+                "https://github.com/raycast/extensions/pull/33507"
+              ),
+              t(" and an "),
+              a("MCP server", "https://github.com/MohakBajaj/jot-mcp"),
+              t(" with no delete tool, on purpose."),
+            ],
+            [
+              t("Crossed 1,000 followers on "),
+              a("X", "https://x.com/MohakBajaj5"),
+              t(", mostly from posting hot takes about coding agents."),
+            ],
+          ],
+          id: "jot",
+        },
+        2: {
+          events: [
+            [
+              t("Built "),
+              a("mohak.tui", "https://github.com/MohakBajaj/mohak.tui"),
+              t(
+                " in Go, on Bubble Tea and Wish, with an AI chat behind a command interface. It runs in Termux on my phone and proxies out to tui.bmohak.xyz, so the portfolio answers on port 22: ssh bmohak.xyz."
+              ),
+            ],
+          ],
+          id: "mohak-tui",
+        },
+        6: {
+          events: [
+            [
+              t("First talk ever: "),
+              a(
+                "Microsoft Build //localhost",
+                "https://github.com/MohakBajaj/build-2026-cli-live"
+              ),
+              t(", Gurugram. From CLI to PR, live, no slides safety net."),
+            ],
+          ],
+          id: "build-talk",
+        },
+        7: {
+          events: [
+            [
+              t("Cursor India Roadshow, and "),
+              a("SyncUp DJ", "https://github.com/MohakBajaj/syncup-djs"),
+              t(
+                ", a multiplayer live-coding jam booth on shared Strudel patterns, at the Cursor buildathon."
+              ),
+            ],
+          ],
+          id: "cursor-roadshow",
+        },
+        8: {
+          events: [
+            [
+              a("Slip", "https://github.com/MohakBajaj/slip"),
+              t(" and "),
+              a("Copper", "https://github.com/MohakBajaj/copper"),
+              t(
+                ": local-first capture inboxes for AI-assisted work. Select text, press a chord, own the markdown."
+              ),
+            ],
+          ],
+          id: "slip-copper",
+        },
+      },
     },
   },
   name: "Mohak Bajaj",

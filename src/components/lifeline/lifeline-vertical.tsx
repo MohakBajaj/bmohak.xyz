@@ -28,7 +28,11 @@ import {
 } from "./lifeline-lightbox";
 import { aggregateLifelinePeople, LifelinePeople } from "./lifeline-people";
 import { LifelinePhotoCard } from "./lifeline-photos";
-import { getMarkerHeight, hasMarkerContent } from "./lifeline-utils";
+import {
+  getLifelineYearGroups,
+  getMarkerHeight,
+  hasMarkerContent,
+} from "./lifeline-utils";
 import type { LifelineEvent, LifelineMarker, LifelineProps } from "./types";
 import { useLifelineIntro } from "./use-lifeline-intro";
 import { useLifelineVerticalScroll } from "./use-lifeline-vertical-scroll";
@@ -176,6 +180,7 @@ const LifelineVerticalEntry = forwardRef<
     introDuration?: number;
     revealPending?: boolean;
     isNow?: boolean;
+    hideLabel?: boolean;
   }
 >(function LifelineVerticalEntry(
   {
@@ -186,6 +191,7 @@ const LifelineVerticalEntry = forwardRef<
     introDuration = 420,
     revealPending = false,
     isNow = false,
+    hideLabel = false,
   },
   ref
 ) {
@@ -248,6 +254,7 @@ const LifelineVerticalEntry = forwardRef<
           <p
             className={cn(
               "text-[15px] leading-5 font-medium whitespace-nowrap tabular-nums transition-colors duration-300",
+              hideLabel && "invisible",
               isNow
                 ? "text-zinc-800 dark:text-zinc-200"
                 : "text-zinc-500 dark:text-zinc-400"
@@ -456,6 +463,33 @@ export function LifelineVertical({
     "--lifeline-rail-ms": `${intro.railDuration}ms`,
   } as CSSProperties;
 
+  const groups = getLifelineYearGroups(markers);
+  const groupStarts = new Set(groups.map(([start]) => start));
+  const segments: (number | [number, number])[] = [];
+  for (let index = 0; index < markers.length; index++) {
+    const group = groups.find(([start]) => start === index);
+    segments.push(group ?? index);
+    if (group) index = group[1];
+  }
+
+  const renderEntry = (index: number) => (
+    <LifelineVerticalEntry
+      key={markers[index].id}
+      ref={(node) => setEntryRef(index, node)}
+      marker={markers[index]}
+      birthYear={birthYear}
+      animateIntro={animateEntries}
+      revealPending={showIntro && revealOnScroll}
+      introDelay={intro.getMarkerDelay(index)}
+      introDuration={intro.getMarkerFadeDuration(index)}
+      hideLabel={groupStarts.has(index)}
+      isNow={
+        index === markers.length - 1 &&
+        Math.floor(markers[index].year) === LIFELINE_CURRENT_YEAR
+      }
+    />
+  );
+
   return (
     <article
       ref={sectionRef}
@@ -496,19 +530,50 @@ export function LifelineVertical({
         </div>
 
         <ol className="relative">
-          {markers.map((marker, index) => (
-            <LifelineVerticalEntry
-              key={marker.id}
-              ref={(node) => setEntryRef(index, node)}
-              marker={marker}
-              birthYear={birthYear}
-              animateIntro={animateEntries}
-              revealPending={showIntro && revealOnScroll}
-              introDelay={intro.getMarkerDelay(index)}
-              introDuration={intro.getMarkerFadeDuration(index)}
-              isNow={marker.year === LIFELINE_CURRENT_YEAR}
-            />
-          ))}
+          {segments.map((segment) =>
+            typeof segment === "number" ? (
+              renderEntry(segment)
+            ) : (
+              // A year and its months share one <li>, so the year label can
+              // stay `sticky` under the nav for as long as its months scroll.
+              <li key={`group-${markers[segment[0]].id}`}>
+                <div
+                  aria-hidden="true"
+                  className={cn(
+                    GRID_CLASS,
+                    "sticky top-0 z-10 h-0",
+                    animateEntries && "lifeline-marker-intro",
+                    showIntro && revealOnScroll && "opacity-0"
+                  )}
+                  style={{
+                    animationDelay: animateEntries
+                      ? `${intro.getMarkerDelay(segment[0])}ms`
+                      : undefined,
+                  }}
+                >
+                  <div />
+                  <div />
+                  <p
+                    className={cn(
+                      "h-8 bg-white pb-3 text-[15px] leading-5 font-medium whitespace-nowrap tabular-nums transition-colors duration-300 dark:bg-black",
+                      Math.floor(markers[segment[1]].year) ===
+                        LIFELINE_CURRENT_YEAR
+                        ? "text-zinc-800 dark:text-zinc-200"
+                        : "text-zinc-500 dark:text-zinc-400"
+                    )}
+                  >
+                    {markers[segment[0]].label ?? markers[segment[0]].year}
+                  </p>
+                </div>
+                <ol>
+                  {Array.from(
+                    { length: segment[1] - segment[0] + 1 },
+                    (_, offset) => renderEntry(segment[0] + offset)
+                  )}
+                </ol>
+              </li>
+            )
+          )}
         </ol>
       </div>
     </article>

@@ -9,6 +9,7 @@ import { achievements, projects, stack, work } from "@/lib/about";
 import { crafts } from "@/lib/crafts";
 import { GITHUB_PROFILE_URL, getCachedOpenSource } from "@/lib/github";
 import type { OpenSource } from "@/lib/github";
+import { getLifelineMarkerHeading } from "@/lib/lifeline-data";
 import { mohak } from "@/lib/lifelines/mohak";
 import { essaySlug, normalizePath } from "@/lib/markdown-paths";
 import { demoSource, installCommand, registryItem } from "@/lib/registry";
@@ -93,7 +94,7 @@ const home = () => {
       const events = marker.events
         .map((event) => `- ${eventText(event)}`)
         .join("\n");
-      return `### ${marker.year}\n\n${events}`;
+      return `### ${getLifelineMarkerHeading(marker)}\n\n${events}`;
     })
     .join("\n\n");
 
