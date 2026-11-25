@@ -1,0 +1,21 @@
+src/lib/ui-sound.ts
+  s_02bfb2c75b0825::t_56bb25e7917844 16
+src/components/playfield.tsx
+  s_02bfb2c75b0825::t_70e536b073bf8a 7-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "aabe77c155b61108978e6bfeb3e96a44d1a0783a",
+  "prompts": {},
+  "sessions": {
+    "s_02bfb2c75b0825": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3833d727-cc52-474f-84b5-5182fadbb3ff",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Mohak Bajaj <bmohak87@gmail.com>"
+    }
+  }
+}
